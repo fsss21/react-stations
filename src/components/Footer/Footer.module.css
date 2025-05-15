@@ -1,0 +1,40 @@
+.footer {
+    display: flex;
+    position: absolute;
+    gap: 25px;
+    bottom: 3%;
+    left: 3%;
+}
+
+.button_home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    border: none;
+    outline: 3px solid rgba(25, 54, 60, 1) !important;
+    outline-offset: 6px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+.button_back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    border: none;
+    outline: 3px solid rgba(25, 54, 60, 1) !important;
+    outline-offset: 6px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+
+    cursor: pointer;
+}

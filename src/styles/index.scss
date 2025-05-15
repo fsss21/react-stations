@@ -1,0 +1,16 @@
+@import url('reset.scss');
+
+body {
+    font-family: 'Calibri Regular';
+    height: 100vh;
+}
+
+#root {
+    height: 100vh;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1050px;
+    width: 100%;
+}
