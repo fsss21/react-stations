@@ -6,16 +6,16 @@ import styles from './Footer.module.css';
 
 const Footer = () => {
     const location = useLocation();
-    const isMainPage = location.pathname === '/';
+    const isMainPage = location.pathname === '/main';
 
     return (
         <>
             <div className={styles.footer}>
-                <Link to="/" className={styles.button_home}>
+                <Link to="/main" className={`${styles.button_footer} ${isMainPage ? styles.button_footer_main : ''}`}>
                     <HomeIcon style={{ width: '50px', height: '50px' }} />
                 </Link>
                 {!isMainPage && (
-                    <Link to="/" className={styles.button_back}>
+                    <Link to="/main" className={`${styles.button_footer} ${isMainPage ? styles.button_footer_main : ''}`}>
                         <ArrowBackIcon style={{ width: '50px', height: '50px' }} />
                     </Link>
                 )}

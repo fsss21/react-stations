@@ -1,0 +1,135 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 910px;
+}
+
+.title {
+    text-align: center;
+    font-style: oblique;
+    font-weight: normal;
+    width: 800px;
+    font-size: 20.5px;
+}
+
+.text {
+    margin-top: 25px;
+    padding: 20px;
+    width: 700px;
+    height: 530px;
+    overflow: auto;
+    font-size: 27px;
+}
+
+.img {
+    max-width: 800px;
+    height: 500px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.pagination {
+    font-size: 1.2rem;
+    min-width: 50px;
+    text-align: center;
+}
+
+.paginationContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    outline: 2px solid rgba(25, 54, 60, 1) !important;
+    outline-offset: 4px;
+    border: none;
+    width: 57px;
+    height: 57px;
+    background: rgba(63, 78, 83, 1);
+    color: #fff;
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    transform: none;
+    cursor: not-allowed;
+}
+
+.button_fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 3%;
+    border-radius: 50%;
+    outline: 2px solid rgba(25, 54, 60, 1) !important;
+    outline-offset: 4px;
+    border: none;
+    width: 57px;
+    height: 57px;
+    background: rgba(63, 78, 83, 1);
+    color: #fff;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.modalContent {
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 20px;
+    background: transparent;
+    cursor: default;
+}
+
+.clickArea {
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.imageFullscreen {
+    width: 100%;
+    height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: pointer;
+}

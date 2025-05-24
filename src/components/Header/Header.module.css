@@ -1,20 +1,26 @@
 .header {
     display: flex;
-    justify-content: end;
-    margin: 20px;
+    position: absolute;
+    right: 40px;
+    top: 40px;
 }
 
 .button_header {
     padding: 10px;
     margin-left: 20px;
     margin-right: 20px;
-    background: rgba(24, 54, 60, 0.25);
-    outline: solid 2px rgba(24, 54, 60, 1) !important;
-    outline-offset: 7px;
-    color: rgba(23, 53, 61, 1);
     border: none;
     text-transform: uppercase;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+    background: rgba(255, 255, 255, 0.8);
+    outline: solid 2px rgba(255, 255, 255, 0.8) !important;
+    outline-offset: 7px;
+    color: rgba(23, 53, 61, 1);
+}
+
+.button_header_main {
+    background: rgba(24, 54, 60, 0.25);
+    outline: solid 2px rgba(24, 54, 60, 1) !important;
 }

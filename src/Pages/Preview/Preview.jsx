@@ -2,8 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import styles from './Preview.module.css';
 
-import preview from '../../video/preview.mp4';
-
 export default function Preview() {
     const navigate = useNavigate();
 
@@ -13,7 +11,7 @@ export default function Preview() {
 
     return (
         <div className={styles.container} onClick={handleClick}>
-            <video className={styles.video} src={preview} autoPlay loop muted playsInline />
+            <video className={styles.video} src={'/videos/preview.mp4'} autoPlay loop muted playsInline />
         </div>
     );
 }
