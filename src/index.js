@@ -17,51 +17,51 @@ import NorthPage from './Pages/HistoricalPage/NorthPage/index.jsx';
 import SchmidtPage from './Pages/HistoricalPage/SchmidtPage/index.jsx';
 
 const router = createBrowserRouter([
-    // {
-    //     path: '/',
-    //     element: <Preview />,
-    // },
-    {
-        path: '/main',
-        element: <MainPage />,
-    },
-    {
-        path: '/history',
-        element: <HistoricalPage />,
-    },
-    {
-        path: '/rudolf',
-        element: <RudolfPage />,
-    },
-    {
-        path: '/quiet',
-        element: <QuietPage />,
-    },
-    {
-        path: '/ball',
-        element: <BallPage />,
-    },
-    {
-        path: '/white',
-        element: <WhitePage />,
-    },
-    {
-        path: '/cheluskin',
-        element: <CheluskinPage />,
-    },
-    {
-        path: '/north',
-        element: <NorthPage />,
-    },
-    {
-        path: '/schmidt',
-        element: <SchmidtPage />,
-    },
+  {
+    path: '/',
+    element: <Preview />,
+  },
+  {
+    path: '/main',
+    element: <MainPage />,
+  },
+  {
+    path: '/history',
+    element: <HistoricalPage />,
+  },
+  {
+    path: '/rudolf',
+    element: <RudolfPage />,
+  },
+  {
+    path: '/quiet',
+    element: <QuietPage />,
+  },
+  {
+    path: '/ball',
+    element: <BallPage />,
+  },
+  {
+    path: '/white',
+    element: <WhitePage />,
+  },
+  {
+    path: '/cheluskin',
+    element: <CheluskinPage />,
+  },
+  {
+    path: '/north',
+    element: <NorthPage />,
+  },
+  {
+    path: '/schmidt',
+    element: <SchmidtPage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
