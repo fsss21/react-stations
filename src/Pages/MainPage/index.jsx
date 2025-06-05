@@ -17,7 +17,9 @@ const MainPage = () => {
                     <button className={styles.button_main}>
                         фильмы <br /> и книги
                     </button>
-                    <button className={styles.button_main}>игры</button>
+                    <Link to="/games">
+                        <button className={styles.button_main}>игры</button>
+                    </Link>
                 </div>
                 <Footer />
             </div>

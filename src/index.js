@@ -5,6 +5,8 @@ import './styles/index.scss';
 
 import MainPage from './Pages/MainPage/index.jsx';
 import Preview from './Pages/Preview/Preview.jsx';
+import GamesPage from './Pages/GamesPage/index.jsx';
+import CrosswordPage from './Pages/GamesPage/CrosswordPage/index.jsx';
 
 import HistoricalPage from './Pages/HistoricalPage/index.jsx';
 
@@ -17,10 +19,10 @@ import NorthPage from './Pages/HistoricalPage/NorthPage/index.jsx';
 import SchmidtPage from './Pages/HistoricalPage/SchmidtPage/index.jsx';
 
 const router = createBrowserRouter([
-    // {
-    //     path: '/',
-    //     element: <Preview />,
-    // },
+    {
+        path: '/',
+        element: <Preview />,
+    },
     {
         path: '/main',
         element: <MainPage />,
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
     {
         path: '/history',
         element: <HistoricalPage />,
+    },
+    {
+        path: '/games',
+        element: <GamesPage />,
+    },
+    {
+        path: '/crossword',
+        element: <CrosswordPage />,
     },
     {
         path: '/rudolf',
