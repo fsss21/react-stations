@@ -31,6 +31,7 @@ const router = createBrowserRouter([
         path: '/history',
         element: <HistoricalPage />,
     },
+
     {
         path: '/games',
         element: <GamesPage />,
