@@ -24,3 +24,9 @@
     background: rgba(24, 54, 60, 0.25);
     outline: solid 2px rgba(24, 54, 60, 1) !important;
 }
+
+.button_header_games {
+    padding: 18px 12px 18px 12px;
+    background: rgba(24, 54, 60, 0.25);
+    outline: solid 2px rgba(24, 54, 60, 1) !important;
+}
