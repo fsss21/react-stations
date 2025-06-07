@@ -7,6 +7,9 @@ import MainPage from './Pages/MainPage/index.jsx';
 import Preview from './Pages/Preview/Preview.jsx';
 import GamesPage from './Pages/GamesPage/index.jsx';
 import CrosswordPage from './Pages/GamesPage/CrosswordPage/index.jsx';
+import CongratsPage from './Pages/GamesPage/CongratsPage/index.jsx';
+import CertificateFormPage from './Pages/GamesPage/CertificateFormPage/index.jsx';
+import ThanksPage from './Pages/GamesPage/ThanksPage/index.jsx';
 
 import HistoricalPage from './Pages/HistoricalPage/index.jsx';
 
@@ -31,7 +34,6 @@ const router = createBrowserRouter([
         path: '/history',
         element: <HistoricalPage />,
     },
-
     {
         path: '/games',
         element: <GamesPage />,
@@ -39,6 +41,18 @@ const router = createBrowserRouter([
     {
         path: '/crossword',
         element: <CrosswordPage />,
+    },
+    {
+        path: 'congrats',
+        element: <CongratsPage />,
+    },
+    {
+        path: 'certificate-form',
+        element: <CertificateFormPage />,
+    },
+    {
+        path: 'thanks',
+        element: <ThanksPage />,
     },
     {
         path: '/rudolf',
