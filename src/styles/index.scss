@@ -14,3 +14,63 @@ body {
     max-width: 1050px;
     width: 100%;
 }
+
+:root {
+    /* Стандартные цвета */
+    --main-bg: #ffffff;
+    --main-text: #000000;
+    --main-outline: 2px solid #000000;
+
+    /* Доступность */
+    --accessibility-bg: var(--main-bg);
+    --accessibility-text: var(--main-text);
+    --accessibility-outline: var(--main-outline);
+}
+
+/* Применяем только когда включен режим доступности */
+.accessibility-enabled {
+    body {
+        background-color: var(--accessibility-bg) !important;
+        color: var(--accessibility-text) !important;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    div {
+        background-image: var(--accessibility-bg) !important;
+    }
+    
+    button {
+       background-color: var(--accessibility-bg) !important;
+    }
+
+    span{
+        border-color: var(--accessibility-text) !important;
+        color: var(--accessibility-text) !important;
+    }
+    
+    p{
+        color: var(--accessibility-text) !important;
+    }
+
+    a,
+    button,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        background-color: var(--accessibility-bg) !important;
+        color: var(--accessibility-text) !important;
+        outline: var(--accessibility-outline) !important;
+    }
+
+    .header,
+    .footer,
+    .card {
+        background-color: var(--accessibility-bg) !important;
+        border-color: var(--accessibility-text) !important;
+    }
+
+    /* Добавьте другие элементы по необходимости */
+}

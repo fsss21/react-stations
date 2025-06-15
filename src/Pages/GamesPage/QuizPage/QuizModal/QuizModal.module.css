@@ -1,0 +1,68 @@
+/* Стили для модального окна */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../../assets/quiz_modal_img.png');
+    width: 1043px;
+    height: 588px;
+}
+
+.modal h2 {
+    font-size: 55px;
+    font-weight: bold;
+    color: #2d444a;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5rem;
+    margin-top: 3rem;
+}
+
+.modalButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    text-transform: uppercase;
+    background-color: rgba(24, 54, 60, 0.3);
+    outline: solid 2px #1d5969 !important;
+    outline-offset: 6px;
+    color: #18363c;
+    cursor: pointer;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.nextButton {
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    text-transform: uppercase;
+    background-color: rgba(24, 54, 60, 0.3);
+    outline: solid 2px #1d5969 !important;
+    outline-offset: 6px;
+    color: #18363c;
+    cursor: pointer;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.modalButton:hover {
+    background-color: #45a049;
+}

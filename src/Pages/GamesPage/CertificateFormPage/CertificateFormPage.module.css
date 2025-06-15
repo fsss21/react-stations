@@ -77,3 +77,28 @@
     color: rgba(255, 255, 255, 1);
     box-shadow: 4px 4px 41px 0px rgba(34, 60, 80, 0.46);
 }
+
+.keyboardWrapper {
+    margin: 20px  auto 0;
+    padding: 10px;
+    border-radius: 8px;
+    width: 50%;
+}
+
+.keyboardTheme {
+    background-color: rgba(88, 114, 119, 0.7) !important;
+    padding: 20px !important;
+}
+
+.keyboardDefaultBtn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    border: none !important;
+}
+
+.keyboardDeleteBtn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 5px !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 1) !important;
+}

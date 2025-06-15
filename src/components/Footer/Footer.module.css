@@ -25,3 +25,22 @@
     outline: 3px solid rgba(25, 54, 60, 1) !important;
     background: rgba(255, 255, 255, 0.25);
 }
+
+/* версия слабовидящих включена */
+
+.button_footer_enabled{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 60px;
+    border-radius: 0;
+    border: none;
+    outline-offset: 6px;
+    outline: 3px solid rgba(25, 54, 60, 1) !important;
+    background: rgba(63, 78, 83, 1);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+}
