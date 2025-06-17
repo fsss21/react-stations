@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
 import styles from './CongratsPage.module.css';

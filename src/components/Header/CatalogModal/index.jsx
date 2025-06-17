@@ -45,7 +45,7 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
           <div className={styles.exhibitsGrid}>
             {data.exhibitsData.slice(0, visibleCount).map((exhibit) => (
               <div key={exhibit.id} className={styles.exhibitCard} onClick={() => handleExhibitClick(exhibit)}>
-                <img src={exhibit.images[0]} alt={exhibit.name} className={styles.thumbnail} />
+                <img src={exhibit.images?.[0]} alt={exhibit.name} className={styles.thumbnail} />
                 {/* Отдельный блок для названия с собственным классом */}
                 <div className={styles.exhibitNameContainer}>
                   <span className={styles.exhibitName}>{exhibit.name}</span>

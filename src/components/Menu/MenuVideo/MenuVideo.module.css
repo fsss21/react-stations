@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    width: 100%;
+    width: 50%;
+    margin-top: 250px;
 }
 
 .textSection {
@@ -37,6 +38,8 @@
 .controls {
     display: flex;
     justify-content: center;
+    margin-top: auto;
+    margin-bottom: 50px;
 }
 
 .videoGrid {

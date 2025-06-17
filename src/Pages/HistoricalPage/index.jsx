@@ -1,55 +1,49 @@
 import styles from './Historical.module.css';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { useLanguage } from '../../LanguageContext';
+import { operationStyles } from '../../data/data';
 
 const HistoricalPage = () => {
-    const navigate = useNavigate();
+  const { isEnabled } = useSelector((state) => state.accessibility);
+  const navigate = useNavigate();
+  const { data } = useLanguage();
 
-    const handleRudolfClick = () => {
-        navigate('/rudolf');
-    };
+  const handleItemClick = (id) => {
+    navigate(`/history-item/${id}`);
+  };
 
-    const handleQuietClick = () => {
-        navigate('/quiet');
-    };
+  return (
+    <>
+      <div className={styles.container}>
+        <Header />
+        {isEnabled ? (
+          <div className={styles.content}>
+            <span className={styles.title}>ИСТОРИЧЕСКИЙ ОБЗОР</span>
 
-    const handleBallClick = () => {
-        navigate('/ball');
-    };
-
-    const handleWhiteClick = () => {
-        navigate('/white');
-    };
-
-    const handleСheluskinClick = () => {
-        navigate('/cheluskin');
-    };
-
-    const handleNorthClick = () => {
-        navigate('/north');
-    };
-
-    const handleSchmidtClick = () => {
-        navigate('/schmidt');
-    };
-
-    return (
-        <>
-            <div className={styles.container}>
-                <Header />
-                <div className={styles.rudolf} onClick={handleRudolfClick}></div>
-                <div className={styles.quiet} onClick={handleQuietClick}></div>
-                <div className={styles.ball} onClick={handleBallClick}></div>
-                <div className={styles.white} onClick={handleWhiteClick}></div>
-                <div className={styles.cheluskin} onClick={handleСheluskinClick}></div>
-                <div className={styles.north} onClick={handleNorthClick}></div>
-                <div className={styles.schmidt} onClick={handleSchmidtClick}></div>
-                <Footer />
-            </div>
-        </>
-    );
+            {data?.operations?.map?.((operation) => {
+              return (
+                <>
+                  <span className={styles.subTitle}>{operation.title} </span>
+                  <span className={styles.info} onClick={() => handleItemClick(operation.id)}>
+                    узнать подробнее
+                  </span>
+                </>
+              );
+            })}
+          </div>
+        ) : (
+          data?.operations?.map((operation) => (
+            <div key={operation.id} className={styles.operation} style={operationStyles[operation.id]} onClick={() => handleItemClick(operation.id)} />
+          ))
+        )}
+        <Footer />
+      </div>
+    </>
+  );
 };
 
 export default HistoricalPage;

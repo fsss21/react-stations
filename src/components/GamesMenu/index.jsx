@@ -13,6 +13,8 @@ const GamesMenu = ({
     hideStats = false,
     solvedCrosswords = 0,
     totalCrosswords = 10,
+    currentPieces = 0,
+    totalPieces = 0,
 }) => {
     const [seconds, setSeconds] = useState(initialSeconds);
     const [isRunning, setIsRunning] = useState(false);
@@ -58,7 +60,8 @@ const GamesMenu = ({
     const getAnswersText = () => {
         switch (activeGame) {
             case 'пазлы':
-                return `собрано ${completedPuzzles}/${totalPuzzles}`;
+                // Всегда показываем текущий прогресс деталей
+                return `${currentPieces}/${totalPieces} деталей`;
             case 'кроссворд':
                 return `угадано ${solvedCrosswords}/${totalCrosswords}`;
             case 'викторина':

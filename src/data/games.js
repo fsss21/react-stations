@@ -2,18 +2,18 @@ export const puzzleData = [
   {
     id: 1,
     imageSrc: '/images/puzzle1.jpg',
-    completed: false
+    completed: false,
   },
   {
     id: 2,
     imageSrc: '/images/puzzle2.jpg',
-    completed: false
+    completed: false,
   },
   {
     id: 3,
     imageSrc: '/images/puzzle3.jpg',
-    completed: false
-  }
+    completed: false,
+  },
 ];
 
 export const difficultyLevels = [
@@ -22,108 +22,108 @@ export const difficultyLevels = [
     name: 'Легкий',
     rows: 3,
     columns: 4,
-    description: '3x4'
+    description: '3x4',
   },
   {
     id: 'medium',
     name: 'Средний',
     rows: 4,
     columns: 6,
-    description: '4x6'
+    description: '4x6',
   },
   {
     id: 'hard',
     name: 'Сложный',
     rows: 6,
     columns: 8,
-    description: '6x8'
-  }
+    description: '6x8',
+  },
 ];
 
 export const crosswordData = {
-  size: 19,
+  size: 17,
   words: [
     {
-      id: 'h1',
-      word: 'Нобиле',
-      clue: 'Фамилия руководителя арктической экспедицией на дирижабле «Италия»?',
-      direction: 'horizontal',
-      start: { row: 11, col: 12 },
-      solved: false
+      id: 'v1',
+      word: 'Седов',
+      clue: 'Фамилия полярного исследователя, в честь которого названы ледник и мыс на острове Гукера.',
+      direction: 'vertical',
+      start: { row: 1, col: 13 },
+      solved: false,
     },
     {
       id: 'v2',
-      word: 'Медведь',
-      clue: 'Слово «Арктика» происходит от греческого «арктос», как переводится?',
+      word: 'Арктика',
+      clue: 'Лидерство в освоении какого физико-географического района Земли,примыкающего к Северному полюсу, продемонстрировала станция «Северный полюс-1» ?',
       direction: 'vertical',
-      start: { row: 10, col: 17 },
-      solved: false
+      start: { row: 3, col: 10 },
+      solved: false,
     },
     {
-      id: 'v3',
-      word: 'Врангеля',
-      clue: 'На одном из островов в Северном Ледовитом океане живет самая большая в мире колония белых медведей, здесь также обитает и около 40 видов птиц. Как называется этот остров?',
-      direction: 'vertical',
-      start: { row: 8, col: 12 },
-      solved: false
+      id: 'h3',
+      word: 'Белый',
+      clue: 'На каком острове в Карском море расположена Морская гидрометеорологическая береговая станция 2 разряда имени М. В. Попова?',
+      direction: 'horizontal',
+      start: { row: 2, col: 12 },
+      solved: false,
     },
     {
       id: 'h4',
-      word: 'Александр',
-      clue: 'Первая часть названия ледокольного парохода, который впервые преодолел Северный морской путь за одну навигацию.',
+      word: 'Рудольфа',
+      clue: 'Самый северный остров архипелага Земля Франца-Иосифа в Северном Ледовитом океане?',
       direction: 'horizontal',
-      start: { row: 9, col: 4 },
-      solved: false
+      start: { row: 4, col: 10 },
+      solved: false,
     },
     {
-      id: 'v5',
-      word: 'Арктика',
-      clue: 'Поблизости от какого острова произошло крушение парохода «Челюскин»?',
+      id: 'h5',
+      word: 'Папанин',
+      clue: 'Кто возглавил первую в мире дрейфующую полярную станцию "Северный полюс-1"?',
+      direction: 'horizontal',
+      start: { row: 7, col: 5 },
+      solved: false,
+    },
+    {
+      id: 'v6',
+      word: 'Тихая',
+      clue: 'Название бухты, в которой проходила вторая зимовка экспедиции Георгия Седова.',
       direction: 'vertical',
-      start: { row: 3, col: 4 },
-      solved: false
+      start: { row: 8, col: 13 },
+      solved: false,
     },
     {
-      id: 'h6',
-      word: 'Ледокол',
-      clue: 'Мощное судно, оборудованное для прохода сквозь льды, для плавания во льдах.',
-      direction: 'horizontal',
-      start: { row: 3, col: 2 },
-      solved: false
-    },
-    {
-      id: 'h7',
-      word: 'Дирижабль',
-      clue: 'Вид воздушного судна, на котором в 1928 году состоялась арктическая экспедиция под руководством итальянского исследователя Умберто Нобиле?',
-      direction: 'horizontal',
-      start: { row: 7, col: 1 },
-      solved: false
-    },
-    {
-      id: 'v8',
-      word: 'Красноярск',
-      clue: 'В каком городе начинался и заканчивался кольцевой маршрут, который совершили в июле 1936 года лётчики Г.Т. Побежимов и В.С. Молоков на летающей лодке Дорнье «Валь» облетев территорию Крайнего Севера?',
+      id: 'v7',
+      word: 'Северный',
+      clue: 'Какое холодное название носил мыс Шмидта, до его переименования в 1934 году?',
       direction: 'vertical',
-      start: { row: 1, col: 6 },
-      solved: false
+      start: { row: 9, col: 8 },
+      solved: false,
+    },
+    {
+      id: 'h8',
+      word: 'станция',
+      clue: 'Какое ключевое слово объединяет понятия: «Маточкин Шар», «Бухта Тихая», «Северный полюс -1», «Мыс Челюскин»?',
+      direction: 'horizontal',
+      start: { row: 9, col: 8 },
+      solved: false,
     },
     {
       id: 'v9',
-      word: 'Шмидт',
-      clue: 'Кто руководил экспедицией на пароходе "Челюскин" с целью проверить возможность плавания по Северной морской трассе на корабле неледокольного класса?',
+      word: 'пролив',
+      clue: 'Водное пространство между двумя участками суши, в честь которого была названа полярная станция «Маточкин Шар», ставшая самой первой именно советской станцией в Арктике?',
       direction: 'vertical',
-      start: { row: 9, col: 15 },
-      solved: false
+      start: { row: 7, col: 3 },
+      solved: false,
     },
     {
       id: 'h10',
       word: 'Челюскин',
-      clue: 'Название парохода, который в результате сильного сжатия был раздавлен льдами и затонул в течение двух часов в 1934 году.',
-      direction: 'vertical',
-      start: { row: 1, col: 2 },
-      solved: false
-    }
-  ]
+      clue: 'Объединённая гидрометеорологическая станция им. Е.К. Фёдорова расположена на мысе, названом в честь одного из великих русских землепроходцев XVIII столетия, назовите его фамилию?',
+      direction: 'horizontal',
+      start: { row: 3, col: 1 },
+      solved: false,
+    },
+  ],
 };
 
 export const quizData = [
@@ -134,8 +134,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: '«Италия»', correct: true },
       { id: 'b', text: '«Франция»', correct: false },
-      { id: 'c', text: '«Америка»', correct: false }
-    ]
+      { id: 'c', text: '«Америка»', correct: false },
+    ],
   },
   {
     id: 2,
@@ -143,8 +143,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: '1 страна', correct: false },
       { id: 'b', text: '3 страны', correct: false },
-      { id: 'c', text: '6 стран', correct: true }
-    ]
+      { id: 'c', text: '6 стран', correct: true },
+    ],
   },
   {
     id: 3,
@@ -152,16 +152,16 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'рыболовный', correct: false },
       { id: 'b', text: 'ледокольный', correct: true },
-      { id: 'c', text: 'пассажирский', correct: false }
-    ]
+      { id: 'c', text: 'пассажирский', correct: false },
+    ],
   },
   {
     id: 4,
     question: 'Использовался ли ледокольный пароход «Александр Сибиряков» во время Великой Отечественной войны?',
     answers: [
       { id: 'a', text: 'да', correct: true },
-      { id: 'b', text: 'нет', correct: false }
-    ]
+      { id: 'b', text: 'нет', correct: false },
+    ],
   },
   {
     id: 5,
@@ -169,8 +169,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'Балтийское море', correct: false },
       { id: 'b', text: 'Баренцево море', correct: true },
-      { id: 'c', text: 'Белое море', correct: false }
-    ]
+      { id: 'c', text: 'Белое море', correct: false },
+    ],
   },
   {
     id: 6,
@@ -178,8 +178,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'парохода «Малыгин»', correct: true },
       { id: 'b', text: 'парохода «Красин»', correct: false },
-      { id: 'c', text: 'парохода «Александр Сибиряков»', correct: false }
-    ]
+      { id: 'c', text: 'парохода «Александр Сибиряков»', correct: false },
+    ],
   },
   {
     id: 7,
@@ -187,8 +187,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'Отто Шмидт', correct: false },
       { id: 'b', text: 'Борис Могилевич', correct: false },
-      { id: 'c', text: 'Владимир Воронин', correct: true }
-    ]
+      { id: 'c', text: 'Владимир Воронин', correct: true },
+    ],
   },
   {
     id: 8,
@@ -196,8 +196,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: '104', correct: true },
       { id: 'b', text: '104', correct: false },
-      { id: 'c', text: '100', correct: false }
-    ]
+      { id: 'c', text: '100', correct: false },
+    ],
   },
   {
     id: 9,
@@ -206,8 +206,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'рыбу', correct: false },
       { id: 'b', text: 'сгущенку', correct: false },
-      { id: 'c', text: 'какао', correct: true }
-    ]
+      { id: 'c', text: 'какао', correct: true },
+    ],
   },
   {
     id: 10,
@@ -215,8 +215,8 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'Герой Советского Союза', correct: true },
       { id: 'b', text: 'Герой Российской Федерации', correct: false },
-      { id: 'c', text: 'Героя Социалистического Труда', correct: false }
-    ]
+      { id: 'c', text: 'Героя Социалистического Труда', correct: false },
+    ],
   },
   {
     id: 11,
@@ -225,16 +225,16 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'ТБ-1', correct: false },
       { id: 'b', text: 'Р-5', correct: true },
-      { id: 'c', text: 'ПС-4', correct: false }
-    ]
+      { id: 'c', text: 'ПС-4', correct: false },
+    ],
   },
   {
     id: 12,
     question: 'Участвовал ли летчик Валерий Павлович Чкалов в спасении экипажа и пассажиров парохода «Челюскин»?',
     answers: [
       { id: 'a', text: 'да', correct: true },
-      { id: 'b', text: 'нет', correct: false }
-    ]
+      { id: 'b', text: 'нет', correct: false },
+    ],
   },
   {
     id: 13,
@@ -242,9 +242,9 @@ export const quizData = [
     answers: [
       { id: 'a', text: 'АНТ-4', correct: true },
       { id: 'b', text: 'Ш-2', correct: false },
-      { id: 'c', text: '«Флитстер»', correct: false }
-    ]
-  }
+      { id: 'c', text: '«Флитстер»', correct: false },
+    ],
+  },
 ];
 
 export const gamesData = [
@@ -263,8 +263,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Ледокольно-транспортное судно «Георгий Седов».', correct: true },
               { id: 'b', text: 'Ледокол «Красин»', correct: false },
-              { id: 'c', text: 'Ледокол «Сибиряков»', correct: false }
-            ]
+              { id: 'c', text: 'Ледокол «Сибиряков»', correct: false },
+            ],
           },
           {
             id: 2,
@@ -272,8 +272,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Иван Дмитриевич Папанин.', correct: true },
               { id: 'b', text: 'Борис Григорьевич Чухновский', correct: false },
-              { id: 'c', text: 'Михаил Васильевич Водопьянов', correct: false }
-            ]
+              { id: 'c', text: 'Михаил Васильевич Водопьянов', correct: false },
+            ],
           },
           {
             id: 3,
@@ -281,8 +281,8 @@ export const gamesData = [
 
             answers: [
               { id: 'a', text: 'Неверно', correct: false },
-              { id: 'b', text: 'Верно', correct: true }
-            ]
+              { id: 'b', text: 'Верно', correct: true },
+            ],
           },
           {
             id: 4,
@@ -290,8 +290,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: '1925 год', correct: false },
               { id: 'b', text: '1928 год', correct: false },
-              { id: 'c', text: '1929 год', correct: true }
-            ]
+              { id: 'c', text: '1929 год', correct: true },
+            ],
           },
           {
             id: 5,
@@ -299,8 +299,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Водопьянов М.В.', correct: true },
               { id: 'b', text: 'Леваневский С.А.', correct: false },
-              { id: 'c', text: 'Каманин Н. П.', correct: false }
-            ]
+              { id: 'c', text: 'Каманин Н. П.', correct: false },
+            ],
           },
           {
             id: 6,
@@ -308,8 +308,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Советский атомный ледокол «Арктика»', correct: true },
               { id: 'b', text: 'Ледокол «Челюскин»', correct: false },
-              { id: 'c', text: 'Ледокол «Красин»', correct: false }
-            ]
+              { id: 'c', text: 'Ледокол «Красин»', correct: false },
+            ],
           },
           {
             id: 7,
@@ -317,8 +317,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Восточная земля', correct: false },
               { id: 'b', text: 'Западная земля', correct: false },
-              { id: 'c', text: 'Северная земля+', correct: true }
-            ]
+              { id: 'c', text: 'Северная земля+', correct: true },
+            ],
           },
           {
             id: 8,
@@ -327,8 +327,8 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Отто Шмидт', correct: true },
               { id: 'b', text: 'Иван Папанин', correct: false },
-              { id: 'c', text: 'Георгий Седов', correct: false }
-            ]
+              { id: 'c', text: 'Георгий Седов', correct: false },
+            ],
           },
           {
             id: 9,
@@ -336,19 +336,19 @@ export const gamesData = [
             answers: [
               { id: 'a', text: '4', correct: true },
               { id: 'b', text: '3', correct: false },
-              { id: 'c', text: '2', correct: false }
-            ]
+              { id: 'c', text: '2', correct: false },
+            ],
           },
           {
             id: 10,
             question: 'Правда ли, что нетающий слой льда, который находится под тонким слоем почвы называется Мерзлотой.',
             answers: [
               { id: 'a', text: 'Да', correct: true },
-              { id: 'b', text: 'Нет', correct: false }
-            ]
-          }
-        ]
-      }
+              { id: 'b', text: 'Нет', correct: false },
+            ],
+          },
+        ],
+      },
     ],
     crossword: [
       {
@@ -359,67 +359,67 @@ export const gamesData = [
             direction: 'По вертикали:',
             question:
               'Самоходное специализированное судно, предназначенное для различных видов ледокольных операций с целью поддержания навигации в замерзающих бассейнах.',
-            answer: '(Ледокол)'
+            answer: '(Ледокол)',
           },
           {
             id: 2,
             direction: 'По вертикали:',
             question:
               'вопрос Советский лётчик, один из первых Героев Советского Союза, участник высокоширотных арктических экспедиций, который В 1930 году первым открыл воздушную линию на остров Сахалин.',
-            answer: '(Водопьянов)'
+            answer: '(Водопьянов)',
           },
           {
             id: 3,
             direction: 'По вертикали:',
             question:
               'вопрос Фамилия российского полярного мореплавателя, путешественника, исследователя, который на собачьей упряжке достиг самой северной точки континентальной Евразии — мыса, который позднее назвали в его честь.',
-            answer: '(Челюскин)'
+            answer: '(Челюскин)',
           },
           {
             id: 4,
             direction: 'По горизонтали:',
             question: 'Вопрос Советский математик, географ, геофизик, астроном, организатор книгоиздания и реформы системы образования. ',
-            answer: '(Шмидт)'
+            answer: '(Шмидт)',
           },
           {
             id: 5,
             direction: 'По горизонтали:',
             question: 'Вопрос Морские путешествия, предпринимаемые для исследования стран, лежащих около земных полюсов',
-            answer: '(экспедиция)'
+            answer: '(экспедиция)',
           },
           {
             id: 6,
             direction: 'По вертикали:',
             question:
               'Советский исследователь Арктики, один из пионеров освоения Северного полюса Земли, который с другими участниками экспедиции зафиксировал глубину океана у Северного полюса — 4 км 290 м.',
-            answer: '(Папанин)'
+            answer: '(Папанин)',
           },
           {
             id: 7,
             direction: 'По вертикали:',
             question: 'вопрос Арктический ледокол (до 1927 года — название «Святогор») — русского и советского флотов, с 1980-х годов — судно-музей.',
-            answer: '(Красин)'
+            answer: '(Красин)',
           },
           {
             id: 8,
             direction: 'По горизонтали:',
             question: 'Вопрос Станция созданная, в Арктике или Антарктике, на близлежащих островах или дрейфующих льдах.',
-            answer: '(Полярная)'
+            answer: '(Полярная)',
           },
           {
             id: 9,
             direction: 'По горизонтали:',
             question: 'Группа островов, располагающихся достаточно близко друг к другу.',
-            answer: '(Архипелаг)'
+            answer: '(Архипелаг)',
           },
           {
             id: 10,
             direction: 'По горизонтали:',
             question: 'Ледокольный пароход, который совершил первое в истории сквозное плавание по Северному морскому пути за одну навигацию в 1932',
-            answer: '(Сибиряков)'
-          }
-        ]
-      }
+            answer: '(Сибиряков)',
+          },
+        ],
+      },
     ],
     puzzle: [
       {
@@ -441,18 +441,18 @@ export const gamesData = [
           { title: '3.jpg', src: 'images/15.jpg' },
           { title: '1.jpg', src: 'images/16.jpg' },
           { title: '2.jpg', src: 'images/17.jpg' },
-          { title: '3.jpg', src: 'images/18.jpg' }
-        ]
-      }
-    ]
+          { title: '3.jpg', src: 'images/18.jpg' },
+        ],
+      },
+    ],
   },
   {
     id: 2,
     name: 'Ледовая разведка',
     images: [
       { title: 'photo_2025-05-20_16-50-14.jpg', src: 'photo_2025-05-20_16-50-14.jpg' },
-      { title: 'photo_2025-05-20_16-44-14.jpg', src: 'photo_2025-05-20_16-44-14.jpg' }
-    ]
+      { title: 'photo_2025-05-20_16-44-14.jpg', src: 'photo_2025-05-20_16-44-14.jpg' },
+    ],
   },
   {
     id: 4,
@@ -465,9 +465,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '«Бухта тихая»', correct: true },
           { id: 'b', text: '«Челюскин»', correct: false },
-          { id: 'c', text: '«Желаний»', correct: false }
+          { id: 'c', text: '«Желаний»', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 2,
@@ -476,9 +476,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: 'Отто Шмидт', correct: false },
           { id: 'b', text: 'Евгений ФЕДОРОВ', correct: false },
-          { id: 'c', text: 'Иван Папанин', correct: true }
+          { id: 'c', text: 'Иван Папанин', correct: true },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 3,
@@ -486,9 +486,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '«мыс Челюскин»', correct: true },
           { id: 'b', text: '«Северный полюс-1»', correct: false },
-          { id: 'c', text: '«Бухта тихая»', correct: false }
+          { id: 'c', text: '«Бухта тихая»', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 4,
@@ -496,9 +496,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '«Остров Рудольфа»', correct: true },
           { id: 'b', text: '«Остров Шмидт»', correct: false },
-          { id: 'c', text: '«Северный полюс-1»', correct: false }
+          { id: 'c', text: '«Северный полюс-1»', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 5,
@@ -506,9 +506,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '«Челюскин Семён»', correct: true },
           { id: 'b', text: '«Папанин Иван»', correct: false },
-          { id: 'c', text: '«Водопьянов Михаил»', correct: false }
+          { id: 'c', text: '«Водопьянов Михаил»', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 6,
@@ -516,9 +516,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '«Красное»', correct: false },
           { id: 'b', text: '«Карское»', correct: true },
-          { id: 'c', text: '«Охотское»', correct: false }
+          { id: 'c', text: '«Охотское»', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 7,
@@ -527,9 +527,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: 'Мыс. Желаний', correct: false },
           { id: 'b', text: 'Маточкин Шар', correct: true },
-          { id: 'c', text: 'Бухта Тихая', correct: false }
+          { id: 'c', text: 'Бухта Тихая', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 8,
@@ -537,9 +537,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: 'мыс Шмидт', correct: true },
           { id: 'b', text: 'мыс Челюскин', correct: false },
-          { id: 'c', text: 'Маточкин Шар', correct: false }
+          { id: 'c', text: 'Маточкин Шар', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 9,
@@ -548,9 +548,9 @@ export const gamesData = [
         answers: [
           { id: 'a', text: 'Водопьянов М.В.', correct: true },
           { id: 'b', text: 'Каманин Н.П.', correct: false },
-          { id: 'c', text: 'Бабушкин М.С.', correct: false }
+          { id: 'c', text: 'Бабушкин М.С.', correct: false },
         ],
-        multiAnswer: false
+        multiAnswer: false,
       },
       {
         id: 10,
@@ -558,10 +558,10 @@ export const gamesData = [
         answers: [
           { id: 'a', text: '6 июля 1938 года', correct: true },
           { id: 'b', text: '21 мая 1937 год', correct: false },
-          { id: 'c', text: '6 июня 1937 года', correct: false }
+          { id: 'c', text: '6 июня 1937 года', correct: false },
         ],
-        multiAnswer: false
-      }
+        multiAnswer: false,
+      },
     ],
     crossword: [
       {
@@ -571,67 +571,67 @@ export const gamesData = [
             id: 1,
             direction: 'По вертикали:',
             question: 'Фамилия полярного исследователя, в честь которого названы ледник и мыс на острове Гукера.',
-            answer: 'Седов'
+            answer: 'Седов',
           },
           {
             id: 2,
             direction: 'По вертикали:',
             question:
               'Лидерство в освоении какого физико-географического района Земли,примыкающего к Северному полюсу, продемонстрировала станция «Северный полюс-1»?',
-            answer: 'Арктика'
+            answer: 'Арктика',
           },
           {
             id: 3,
             direction: 'По горизонтали:',
             question: 'На каком острове в Карском море расположена Морская гидрометеорологическая береговая станция 2 разряда имени М. В. Попова?',
-            answer: 'Белый'
+            answer: 'Белый',
           },
           {
             id: 4,
             direction: 'По горизонтали:',
             question: 'Самый северный остров архипелага Земля Франца-Иосифа в Северном Ледовитом океане?',
-            answer: 'Рудольфа'
+            answer: 'Рудольфа',
           },
           {
             id: 5,
             direction: 'По горизонтали:',
             question: 'Кто возглавил первую в мире дрейфующую полярную станцию "Северный полюс-1"?',
-            answer: 'Папанин'
+            answer: 'Папанин',
           },
           {
             id: 6,
             direction: 'По вертикали:',
             question: 'Название бухты, в которой проходила вторая зимовка экспедиции Георгия Седова.',
-            answer: 'Тихая'
+            answer: 'Тихая',
           },
           {
             id: 7,
             direction: 'По вертикали:',
             question: 'Какое холодное название носил мыс Шмидта, до его переименования в 1934 году?',
-            answer: 'Северный'
+            answer: 'Северный',
           },
           {
             id: 8,
             direction: 'По горизонтали:',
             question: 'Какое ключевое слово объединяет понятия: «Маточкин Шар», «Бухта Тихая», «Северный полюс -1», «Мыс Челюскин»?',
-            answer: 'станция'
+            answer: 'станция',
           },
           {
             id: 9,
             direction: 'По вертикали:',
             question:
               'Водное пространство между двумя участками суши, в честь которого была названа полярная станция «Маточкин Шар», ставшая самой первойименно советской станцией в Арктике?',
-            answer: 'пролив'
+            answer: 'пролив',
           },
           {
             id: 8,
             direction: 'По горизонтали:',
             question:
               'Объединённая гидрометеорологическая станция им. Е.К. Фёдорова расположена на мысе, названом в честь одного из великих русских землепроходцев XVIII столетия, назовите его фамилию? ',
-            answer: 'Челюскин'
-          }
-        ]
-      }
+            answer: 'Челюскин',
+          },
+        ],
+      },
     ],
     puzzle: [
       {
@@ -656,10 +656,10 @@ export const gamesData = [
           { title: '18.jpg', src: 'images/18.jpg' },
           { title: '19.jpg', src: 'images/19.jpg' },
           { title: '20.jpg', src: 'images/20.jpg' },
-          { title: '21.jpg', src: 'images/21.jpg' }
-        ]
-      }
-    ]
+          { title: '21.jpg', src: 'images/21.jpg' },
+        ],
+      },
+    ],
   },
   {
     id: 5,
@@ -677,9 +677,9 @@ export const gamesData = [
               { id: 'a', text: 'помогала осваивать Америку', correct: false },
               { id: 'b', text: 'снабжение дрейфующих и полярных станций', correct: true },
               { id: 'c', text: 'помогала осваивать Арктику', correct: true },
-              { id: 'd', text: 'перевозка пассажиров и грузов в районах Крайнего Севера', correct: true }
+              { id: 'd', text: 'перевозка пассажиров и грузов в районах Крайнего Севера', correct: true },
             ],
-            multiAnswer: true
+            multiAnswer: true,
           },
           {
             id: 2,
@@ -687,9 +687,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: '1933', correct: true },
               { id: 'b', text: '1934', correct: false },
-              { id: 'c', text: '1930', correct: false }
+              { id: 'c', text: '1930', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 3,
@@ -698,9 +698,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Краснодар', correct: false },
               { id: 'b', text: 'Копейск', correct: false },
-              { id: 'c', text: 'Красноярск', correct: true }
+              { id: 'c', text: 'Красноярск', correct: true },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 4,
@@ -709,9 +709,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'аквасамолет', correct: false },
               { id: 'b', text: 'гидросамолет', correct: true },
-              { id: 'c', text: 'водосамолет', correct: false }
+              { id: 'c', text: 'водосамолет', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 5,
@@ -719,9 +719,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'транспортной инфраструктуры Советского Союза', correct: true },
               { id: 'b', text: 'военной миссии Советского Союза', correct: false },
-              { id: 'c', text: 'курортных маршрутов Советского Союза', correct: false }
+              { id: 'c', text: 'курортных маршрутов Советского Союза', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 6,
@@ -729,9 +729,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Снежная Морозная Погода', correct: false },
               { id: 'b', text: 'Самолет Морского Предназначения', correct: false },
-              { id: 'c', text: 'Северный Морской Путь', correct: true }
+              { id: 'c', text: 'Северный Морской Путь', correct: true },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 7,
@@ -739,9 +739,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: '77', correct: true },
               { id: 'b', text: '15', correct: false },
-              { id: 'c', text: '104', correct: false }
+              { id: 'c', text: '104', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 8,
@@ -749,9 +749,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'МП-6', correct: true },
               { id: 'b', text: 'АНТ-4', correct: false },
-              { id: 'c', text: 'АНТ-25', correct: false }
+              { id: 'c', text: 'АНТ-25', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 9,
@@ -759,9 +759,9 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Б.Г. Чухновский', correct: false },
               { id: 'b', text: 'М.И. Шевелёв', correct: true },
-              { id: 'c', text: 'А.В. Беляков', correct: false }
+              { id: 'c', text: 'А.В. Беляков', correct: false },
             ],
-            multiAnswer: false
+            multiAnswer: false,
           },
           {
             id: 10,
@@ -769,12 +769,12 @@ export const gamesData = [
             answers: [
               { id: 'a', text: 'Р-5', correct: true },
               { id: 'b', text: 'Ш-2', correct: false },
-              { id: 'c', text: 'У-2', correct: false }
+              { id: 'c', text: 'У-2', correct: false },
             ],
-            multiAnswer: false
-          }
-        ]
-      }
+            multiAnswer: false,
+          },
+        ],
+      },
     ],
 
     crossword: [
@@ -786,75 +786,75 @@ export const gamesData = [
             direction: 'По вертикали:',
             question:
               'Какой город воздушная арктическая трасса вдоль евразийского побережья связала с самыми отдалёнными базами Советской Арктики, с её портами, зимовками, полярными станциями и промышленными новостройками?',
-            answer: '(Москва)'
+            answer: '(Москва)',
           },
           {
             id: 2,
             direction: 'По горизонтали:',
             question: 'Использование каких самолетов позволяло приземляться на водные поверхности, что было особенно актуально в условиях сурового климата?',
-            answer: '(Гидросамолет)'
+            answer: '(Гидросамолет)',
           },
           {
             id: 3,
             direction: 'По вертикали:',
             question:
               'С 1933 года началось регулярное воздушное сообщение по маршрутам Красноярск – Игарка. Что для этого было обустроено в Красноярске на острове Телячем?',
-            answer: '(Аэрогидропорт)'
+            answer: '(Аэрогидропорт)',
           },
           {
             id: 4,
             direction: 'По горизонтали:',
             question: 'Одна из остановок авиамаршрута Москва – Архангельск, родина Снегурочки?',
-            answer: '(Кострома)'
+            answer: '(Кострома)',
           },
           {
             id: 5,
             direction: 'По горизонтали:',
             question: 'Как называется район Земли, который примыкает к Северному полюсу?',
-            answer: '(Арктика)'
+            answer: '(Арктика)',
           },
           {
             id: 6,
             direction: 'По горизонтали:',
             question: 'В 1932 году было образовано Главное управление Северного морского пути, назовите фамилию того, кто стал его руководителем?',
-            answer: '(Шмидт)'
+            answer: '(Шмидт)',
           },
           {
             id: 7,
             direction: 'По вертикали:',
             question: 'Для изучения подступов к какому полюсу использовался маршрут Москва — Земля Франца-Иосифа?',
-            answer: '(Северный)'
+            answer: '(Северный)',
           },
           {
             id: 8,
             direction: 'По вертикали:',
             question:
               'В каком городе начинался и заканчивался кольцевой маршрут, который совершили в июле 1936 года лётчики Г.Т. Побежимов и В.С. Молоков на летающей лодке Дорнье «Валь» облетев территорию Крайнего Севера?',
-            answer: '(Красноярск)'
+            answer: '(Красноярск)',
           },
           {
             id: 9,
             direction: 'По горизонтали:',
             question: 'Фамилия летчика, впервые проложившего авиатрассу через весь Северный морской путь?',
-            answer: '(Молоков)'
+            answer: '(Молоков)',
           },
           {
             id: 10,
             direction: 'По горизонтали:',
             question: 'Что стало важным инструментом для транспортировки грузов, почты и пассажиров в арктическом регионе?',
-            answer: '(Авиаперевозки)'
-          }
-        ]
-      }
+            answer: '(Авиаперевозки)',
+          },
+        ],
+      },
     ],
     puzzle: [
       {
         images: [
           { title: '1.jpg', src: 'images/1.jpg' },
           { title: '2.jpg', src: 'images/2.jpg' },
-          { title: '3.jpg', src: 'images/3.jpg' }
-        ]
-      }
-    ]
-  }
+          { title: '3.jpg', src: 'images/3.jpg' },
+        ],
+      },
+    ],
+  },
 ];

@@ -1,0 +1,18 @@
+{
+  "useTabs": false,
+  "printWidth": 160,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "jsxBracketSameLine": true,
+  "parser": "flow",
+  "semi": true,
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "parser": "scss"
+      }
+    }
+  ]
+}
