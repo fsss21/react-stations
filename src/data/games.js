@@ -14,6 +14,96 @@ export const puzzleData = [
     imageSrc: '/images/puzzle3.jpg',
     completed: false,
   },
+//   {
+// 	id: 4,
+// 	imageSrc: '/images/puzzle4.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 5,
+// 	imageSrc: '/images/puzzle5.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 6,
+// 	imageSrc: '/images/puzzle6.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 7,
+// 	imageSrc: '/images/puzzle7.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 8,
+// 	imageSrc: '/images/puzzle8.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 9,
+// 	imageSrc: '/images/puzzle9.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 10,
+// 	imageSrc: '/images/puzzle10.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id:11 ,
+// 	imageSrc: '/images/puzzle11.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 12,
+// 	imageSrc: '/images/puzzle12.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 13,
+// 	imageSrc: '/images/puzzle13.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 14,
+// 	imageSrc: '/images/puzzle14.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 15,
+// 	imageSrc: '/images/puzzle15.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 16,
+// 	imageSrc: '/images/puzzle16.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 17,
+// 	imageSrc: '/images/puzzle17.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 18,
+// 	imageSrc: '/images/puzzle18.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 19,
+// 	imageSrc: '/images/puzzle19.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 20,
+// 	imageSrc: '/images/puzzle20.jpg',
+// 	completed: false,
+//   },
+//   {
+// 	id: 21,
+// 	imageSrc: '/images/puzzle21.jpg',
+// 	completed: false,
+//   },
 ];
 
 export const difficultyLevels = [
@@ -112,7 +202,7 @@ export const crosswordData = {
       word: 'пролив',
       clue: 'Водное пространство между двумя участками суши, в честь которого была названа полярная станция «Маточкин Шар», ставшая самой первой именно советской станцией в Арктике?',
       direction: 'vertical',
-      start: { row: 7, col: 3 },
+      start: { row: 11, col: 3 },
       solved: false,
     },
     {
@@ -120,7 +210,7 @@ export const crosswordData = {
       word: 'Челюскин',
       clue: 'Объединённая гидрометеорологическая станция им. Е.К. Фёдорова расположена на мысе, названом в честь одного из великих русских землепроходцев XVIII столетия, назовите его фамилию?',
       direction: 'horizontal',
-      start: { row: 3, col: 1 },
+      start: { row: 14, col: 1 },
       solved: false,
     },
   ],
