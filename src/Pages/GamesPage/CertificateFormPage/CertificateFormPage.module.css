@@ -62,10 +62,9 @@
 }
 
 .submitButton {
+    margin: 0 auto;
     width: 350px;
     padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
     border: none;
     text-transform: uppercase;
     font-size: 25px;
@@ -78,17 +77,42 @@
     box-shadow: 4px 4px 41px 0px rgba(34, 60, 80, 0.46);
 }
 
+/* версия слабовидящих включена */
+
+.submitButton_enabled {
+  box-shadow: none;
+}
+
+/* версия слабовидящих включена */
+
+.keyboardAbcBtn{
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: none  !important;
+    color: rgba(255, 255, 255, 1);
+}
+
 .keyboardWrapper {
     margin: 20px  auto 0;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 14px;
     width: 50%;
 }
 
 .keyboardTheme {
-    background-color: rgba(88, 114, 119, 0.7) !important;
-    padding: 20px !important;
+    padding: 20px;
+    margin-bottom: 15px ;
+    background-color: rgba(88, 114, 119, 0.7);
 }
+/* версия слабовидящих включена */
+
+.keyboardTheme_enabled{
+    padding: 20px;
+    margin-bottom: 15px ;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+/* версия слабовидящих включена */
 
 .keyboardDefaultBtn {
     background: rgba(255, 255, 255, 0.2) !important;

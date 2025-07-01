@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+
+import { useSelector } from 'react-redux';
+
 import styles from '../../Header.module.css';
 import AppsIcon from '@mui/icons-material/Apps';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -6,6 +9,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ClearIcon from '@mui/icons-material/Clear';
 
 const ExhibitDetailModal = ({ exhibit, onClose, onBackToCatalog }) => {
+  const { isEnabled } = useSelector((state) => state.accessibility);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const modalRef = useRef(null);
@@ -36,11 +40,18 @@ const ExhibitDetailModal = ({ exhibit, onClose, onBackToCatalog }) => {
     onBackToCatalog(); // Открываем каталог
   };
 
+  const detailClass = styles.detailModal;
+  const detailEnabled = isEnabled ? styles.detailModal_enabled : '';
+  const basicClass = styles.modalHeader 
+  const enabledClass = isEnabled ? styles.modalHeader_enabled : '';
+
+
+
   return (
     <div className={styles.modalOverlay}>
-      <div ref={modalRef} className={styles.detailModal}>
+      <div ref={modalRef} className={`${detailClass} ${detailEnabled}`}>
         {/* Верхняя панель навигации */}
-        <div className={styles.modalHeader}>
+        <div className={`${basicClass} ${enabledClass}`}>
           <span className={styles.title}>спасательные операции. каталог экспонатов</span>
           <div className={styles.navButtons}>
             <button onClick={handlePrev} className={styles.navButton}>

@@ -3,16 +3,7 @@
     justify-content: space-between;
     position: relative;
     width: 50%;
-    margin-top: 250px;
-}
-
-.textSection {
-    margin-top: 25px;
-    padding: 20px;
-    width: 700px;
-    height: 530px;
-    overflow: auto;
-    font-size: 27px;
+    margin-top: 200px;
 }
 
 .textBlock {

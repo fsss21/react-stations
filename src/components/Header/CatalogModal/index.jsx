@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../Header.module.css';
 
+import { useSelector } from 'react-redux';
+
 import ClearIcon from '@mui/icons-material/Clear';
 import { useLanguage } from '../../../LanguageContext';
 
 const CatalogModal = ({ onClose, onSelectExhibit }) => {
+  const { isEnabled } = useSelector((state) => state.accessibility);
+
   const [visibleCount, setVisibleCount] = useState(4);
   const modalRef = useRef(null);
   const { data } = useLanguage();
@@ -28,11 +32,18 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
     onClose(); // Закрываем каталог при выборе экспоната
   };
 
+  const catalogClass = styles.catalogModal;
+  const catalogEnabled = isEnabled ? styles.catalogModal_enabled : '';
+  const basicClass = styles.modalHeader 
+  const enabledClass = isEnabled ? styles.modalHeader_enabled : '';
+
+
   return (
     <div className={styles.modalOverlay}>
-      <div ref={modalRef} className={styles.catalogModal}>
+      
+      <div ref={modalRef} className={`${catalogClass} ${catalogEnabled}`}>
         {/* Шапка модального окна */}
-        <div className={styles.modalHeader}>
+        <div className={`${basicClass} ${enabledClass}`}>
           <span className={styles.title}>спасательные операции. каталог экспонатов</span>
           <div className={styles.navButtons}>
             <button onClick={onClose} className={styles.closeButton}>

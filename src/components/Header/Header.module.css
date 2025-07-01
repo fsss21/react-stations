@@ -1,8 +1,19 @@
 .header {
     display: flex;
     position: absolute;
-    right: 40px;
-    top: 40px;
+    right: 30px;
+    top: 30px;
+}
+
+/* версия слабовидящих включена */
+
+.header_enabled {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:static;
+    width: 99%;
+    margin: 15px 10px 0 10px;
 }
 
 .exhibitNameContainer {
@@ -69,6 +80,15 @@
     max-height: 90vh;
 }
 
+/* версия слабовидящих включена */
+
+.catalogModal_enabled,
+.detailModal_enabled {
+    background-color: #fff;
+}
+
+/* версия слабовидящих включена */
+
 /* Каталог */
 .exhibitsGrid {
     display: grid;
@@ -119,6 +139,16 @@
     border-radius: 15px;
     background: rgba(80, 109, 117, 1);
 }
+
+/* версия слабовидящих включена */
+
+.modalHeader_enabled{
+    background: #fff;
+    border-bottom: solid 1px #000;
+}
+
+
+/* версия слабовидящих включена */
 
 .navButtons {
     display: flex;

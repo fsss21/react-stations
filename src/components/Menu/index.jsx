@@ -11,74 +11,77 @@ import MenuAudio from './MenuAudio';
 import MenuVideo from './MenuVideo';
 
 const TABS = {
-    PHOTO: 'PHOTO',
-    VIDEO: 'VIDEO',
-    AUDIO: 'AUDIO',
+  PHOTO: 'PHOTO',
+  VIDEO: 'VIDEO',
+  AUDIO: 'AUDIO'
 };
 
 const Menu = ({ data }) => {
-    const { isEnabled  } = useSelector(state => state.accessibility);
-    const { images = [], videos = [], audios = [], title, text } = data;
-    const [activeTab, setActiveTab] = useState(TABS.PHOTO);
+  const { isEnabled } = useSelector((state) => state.accessibility);
+  const { images = [], videos = [], audios = [], title, text } = data;
+  const [activeTab, setActiveTab] = useState(TABS.PHOTO);
 
-    
-    const baseClass = styles.button;
-    const enabledClass = isEnabled ? styles.enabledButton : '';
+  const baseClass = styles.button;
+  const enabledClass = isEnabled ? styles.enabledButton : '';
 
+  const renderContent = () => {
+    switch (activeTab) {
+      case TABS.PHOTO:
+        return <MenuPhoto images={images} />;
+      case TABS.VIDEO:
+        return <MenuVideo videos={videos} />;
+      case TABS.AUDIO:
+        return <MenuAudio audios={audios} />;
+      default:
+        return null;
+    }
+  };
 
-    const renderContent = () => {
-        switch (activeTab) {
-            case TABS.PHOTO:
-                return <MenuPhoto images={images} />;
-            case TABS.VIDEO:
-                return <MenuVideo videos={videos} />;
-            case TABS.AUDIO:
-                return <MenuAudio audios={audios} />;
-            default:
-                return null;
-        }
-    };
-
-    
-
-    return (
-        <div className={styles.container}>
-            <Header />
-            <div className={styles.content}>
-                {isEnabled ? 
-                <>
-                    <span className={styles.enableTitle}>исторический обзор</span>
-                    <span className={styles.enableSubtitle}>
-                        {title}
-                    </span>
-                </>
-                :
-                <>
-                    <span className={styles.title}>исторический обзор</span>
-                    <span className={styles.subtitle}>
-                        <PlayArrowIcon style={{ width: '70px', height: '70px' }} />
-                        {title}
-                    </span>
-                </>
-                }
-                <div className={styles.buttons}>
-                    <button className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.PHOTO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`} onClick={() => setActiveTab(TABS.PHOTO)}>
-                        фото
-                    </button>
-                    <button className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.VIDEO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`} onClick={() => setActiveTab(TABS.VIDEO)}>
-                        видео-ролики
-                    </button>
-                    <button className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.AUDIO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`} onClick={() => setActiveTab(TABS.AUDIO)}>
-                        аудиоистории
-                    </button>
-                </div>
-                <div className={styles.textSection}>{text}</div>
-            </div>
-
-            {renderContent()}
-            <Footer />
+  return (
+    <section className={styles.container}>
+      <Header />
+      <div className={styles.content}>
+        {isEnabled ? (
+          <>
+            <span className={styles.enableTitle}> {data.sectionHistoryTitle}</span>
+            <span className={styles.enableSubtitle}>{title}</span>
+          </>
+        ) : (
+          <>
+            <span className={styles.title}> {data.sectionHistoryTitle}</span>
+            <span className={styles.subtitle}>
+              <PlayArrowIcon style={{ width: '70px', height: '70px' }} />
+              {title}
+            </span>
+          </>
+        )}
+        <div className={styles.buttons}>
+          <button
+            className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.PHOTO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={() => setActiveTab(TABS.PHOTO)}
+          >
+            {data.tabPhoto}
+          </button>
+          <button
+            className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.VIDEO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={() => setActiveTab(TABS.VIDEO)}
+          >
+            {data.tabVideo}
+          </button>
+          <button
+            className={`${`${baseClass} ${enabledClass}`} ${activeTab === TABS.AUDIO ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={() => setActiveTab(TABS.AUDIO)}
+          >
+            {data.tabAudio}
+          </button>
         </div>
-    );
+        <div className={styles.textSection}>{text}</div>
+      </div>
+
+      {renderContent()}
+      <Footer />
+    </section>
+  );
 };
 
 export default Menu;

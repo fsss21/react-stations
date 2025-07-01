@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib';
+import { puzzleData, difficultyLevels } from '../../../data/games.js';
+import { useLanguage } from '../../../LanguageContext.jsx';
+
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import styles from './PuzzlePage.module.css';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
-import { puzzleData, difficultyLevels } from '../../../data/games.js';
+
 
 const PuzzlePage = () => {
   const navigate = useNavigate();
+  
   const [selectedPuzzle, setSelectedPuzzle] = useState(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
   const [gameStarted, setGameStarted] = useState(false);
@@ -19,6 +23,7 @@ const PuzzlePage = () => {
   const [timerActive, setTimerActive] = useState(false);
   const [currentPuzzleTime, setCurrentPuzzleTime] = useState(0);
   const [showHint, setShowHint] = useState(false);
+  const { data } = useLanguage();
 
   // Вычисляем количество деталей для текущего уровня сложности
   const getCurrentPuzzlePieces = () => {
@@ -92,9 +97,11 @@ const PuzzlePage = () => {
     );
   }, [completedPuzzles, gameSeconds]);
 
+  
+
   if (!gameStarted) {
     return (
-      <div className={styles.container}>
+      <section className={styles.container}>
         <GamesMenu hideStats={true} />
         <div className={styles.selectionContainer}>
           <div className={styles.puzzles}>
@@ -109,9 +116,7 @@ const PuzzlePage = () => {
               </div>
             ))}
           </div>
-          <h2 className={styles.title}>
-            уровень <br /> сложности
-          </h2>
+          <p className={styles.title}>{data.difficultyTitle}</p>
 
           <div className={styles.difficultyContainerVertical}>
             {difficultyLevels.map((level) => (
@@ -132,44 +137,46 @@ const PuzzlePage = () => {
           </div>
 
           <button className={styles.startButton} onClick={handleStartGame} disabled={!selectedPuzzle}>
-            Начать игру
+            {data.startGame}
           </button>
         </div>
         <Footer />
-      </div>
+      </section>
     );
   }
+
+  
 
   const difficulty = difficultyLevels.find((l) => l.id === selectedDifficulty);
   const puzzlePieces = difficulty.rows * difficulty.columns; // Вычисляем количество деталей
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       {/* Передаем количество деталей в GamesMenu */}
       <GamesMenu completedPuzzles={completedPuzzles} totalPuzzles={totalPuzzles} initialSeconds={gameSeconds} puzzlePieces={puzzlePieces} />
 
       <div className={styles.gameContainer}>
         <button className={styles.backButton} onClick={handleBackToSelection}>
-          ← Выбрать другой пазл
+          {data.backToPuzzleSelection}
         </button>
 
         <div className={styles.puzzleArea}>
           <div className={styles.hintPanel}>
             <button className={styles.hintToggle} onClick={() => setShowHint(!showHint)}>
-              {showHint ? 'Убрать подсказку' : 'Открыть подсказку'}
+              {showHint ? data.hideHint : data.showHint}
             </button>
 
-            {showHint && <img src={selectedPuzzle.imageSrc} alt="Подсказка" className={styles.hintImage} />}
+            {showHint && <img src={selectedPuzzle.imageSrc} alt={data.hintImageAlt} className={styles.hintImage} />}
           </div>
 
           <div className={styles.puzzleWrapper}>
-            <JigsawPuzzle imageSrc={selectedPuzzle.imageSrc} rows={difficulty.rows} columns={difficulty.columns} onSolved={handlePuzzleComplete} />
+            <JigsawPuzzle  imageSrc={selectedPuzzle.imageSrc} rows={difficulty.rows} columns={difficulty.columns} onSolved={handlePuzzleComplete} />
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
+    </section>
   );
 };
 

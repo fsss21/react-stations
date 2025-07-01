@@ -32,9 +32,8 @@
     flex-wrap: wrap;
 }
 
-.puzzleCard {
-    border: 2px solid #ddd;
-    padding: 10px;
+.puzzleCard { 
+    padding: 15px;
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -42,6 +41,7 @@
 }
 
 .puzzleCard.selected {
+    padding: 10px;
     width: 320px;
     height: 210px;
 }
@@ -68,12 +68,7 @@
     font-size: 14px;
 }
 
-/* .difficultyWrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-} */
+
 
 .difficultyContainerVertical {
     display: flex;

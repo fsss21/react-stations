@@ -22,6 +22,19 @@
     transform: translate(-50%, 15%);
     width: 100%;
 }
+/* версия слабовидящих включена */
+.content_enabled {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 20px;
+    bottom: 35%;
+    left: 50%;
+    width: 100%;
+}
+/* версия слабовидящих включена */
 
 .congratsText {
     text-align: center;
@@ -53,3 +66,24 @@
     color: rgba(255, 255, 255, 1);
     box-shadow: 4px 4px 41px 0px rgba(34, 60, 80, 0.46);
 }
+
+/* версия слабовидящих включена */
+
+.button_enabled {
+    height: 100%;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    outline: solid 2px rgb(35, 71, 78) !important;
+    outline-offset: 7px;
+    color: rgba(255, 255, 255, 1);
+    box-shadow: none;
+}
+
+/* версия слабовидящих включена */

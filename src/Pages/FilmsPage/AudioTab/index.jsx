@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styles from '../FilmsPage.module.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -7,6 +8,7 @@ const ITEMS_PER_PAGE = 3;
 
 // Создаем независимый компонент для аудиоплеера
 const AudioPlayer = ({ item }) => {
+    const { isEnabled } = useSelector((state) => state.accessibility);
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
@@ -19,16 +21,19 @@ const AudioPlayer = ({ item }) => {
         setIsPlaying(!isPlaying);
     };
 
+    const baseClass = styles.audioCover;
+    const enabledClass = isEnabled ? styles.audioCover_enabled : '';
+
     return (
-        <div className={styles.mediaCard}>
+        <section className={styles.mediaCard}>
             <div className={styles.audioWrapper}>
                 <audio ref={audioRef} src={item.src || 'fallback-audio.mp3'} preload="none" onEnded={() => setIsPlaying(false)} />
-                <div className={styles.audioCover} onClick={togglePlay}></div>
+                <span className={`${baseClass} ${enabledClass}`} onClick={togglePlay}></span>
             </div>
             <div className={styles.mediaInfo}>
-                <h3 className={styles.mediaTitle}>{item.title}</h3>
+                <span className={styles.mediaTitle}>{item.title}</span>
             </div>
-        </div>
+        </section>
     );
 };
 
@@ -53,14 +58,14 @@ const AudioTab = ({ items }) => {
 
     return (
         <>
-            <div className={styles.mediaGrid}>
+            <section className={styles.mediaGrid}>
                 {visibleItems.map((item, index) => (
                     <AudioPlayer
                         key={`audio-${index}-${currentPage}`} // Уникальный ключ с ID и страницей
                         item={item}
                     />
                 ))}
-            </div>
+            </section>
 
             {totalPages > 1 && (
                 <div className={styles.controls}>

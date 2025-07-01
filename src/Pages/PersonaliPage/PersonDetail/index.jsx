@@ -17,13 +17,6 @@ const TABS = {
   GALLERY: 'gallery'
 };
 
-const TABS_CONFIG = [
-  { key: TABS.BIOGRAPHY, label: 'Биография' },
-  { key: TABS.ACHIEVEMENTS, label: 'Достижения' },
-  { key: TABS.QUOTE, label: 'Цитата' },
-  { key: TABS.GALLERY, label: 'Галерея' }
-];
-
 const PersonDetail = () => {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState(TABS.BIOGRAPHY);
@@ -34,6 +27,13 @@ const PersonDetail = () => {
     engineer: 'engineers',
     researcher: 'researchers'
   };
+
+  const TABS_CONFIG = [
+    { key: TABS.BIOGRAPHY, label: data.tabBiography },
+    { key: TABS.ACHIEVEMENTS, label: data.tabAchievements },
+    { key: TABS.QUOTE, label: data.tabQuote },
+    { key: TABS.GALLERY, label: data.tabGallery }
+  ];
 
   const [categoryPrefix] = id.split('-');
   const category = categoryMap[categoryPrefix];
@@ -59,9 +59,9 @@ const PersonDetail = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <Header />
-      <h2 className={styles.title}>Персоналии</h2>
+      <span className={styles.title}>Персоналии</span>
 
       <TabsMenu activeTab={activeTab} onTabChange={setActiveTab} tabs={TABS_CONFIG} />
 
@@ -73,7 +73,7 @@ const PersonDetail = () => {
         <div className={styles.tabContent}>{renderContent()}</div>
       </div>
       <Footer />
-    </div>
+    </section>
   );
 };
 

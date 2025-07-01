@@ -6,7 +6,7 @@ import { crosswordData } from '../../../data/games';
 import Footer from '../../../components/Footer';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
-import BackspaceIcon from '@mui/icons-material/Backspace';
+
 
 const CrosswordPage = () => {
   const navigate = useNavigate();
@@ -28,6 +28,14 @@ const CrosswordPage = () => {
     []
   );
 
+  const clueNumberMap = useMemo(() => {
+    const map = {};
+    crosswordWords.forEach((word, index) => {
+      map[word.id] = index + 1;
+    });
+    return map;
+  }, [crosswordWords]);
+
   const [words, setWords] = useState([...crosswordWords]);
 
   const initializeGrid = useCallback(() => {
@@ -47,13 +55,16 @@ const CrosswordPage = () => {
     crosswordWords.forEach((word) => {
       const { start, direction, word: text, id } = word;
       let { row, col } = start;
+      const clueNumber = clueNumberMap[id]; // Получаем номер
 
       for (let i = 0; i < text.length; i++) {
         if (row < crosswordData.size && col < crosswordData.size) {
           newGrid[row][col] = {
             ...newGrid[row][col],
             value: text[i].toUpperCase(),
-            clueIds: [...newGrid[row][col].clueIds, id]
+            clueIds: [...newGrid[row][col].clueIds, id],
+            // Добавляем номер только для первой буквы слова
+            ...(i === 0 && { clueNumber })
           };
         }
 
@@ -63,7 +74,7 @@ const CrosswordPage = () => {
     });
 
     return newGrid;
-  }, [crosswordData.size, crosswordWords]);
+  }, [crosswordData.size, crosswordWords, clueNumberMap]);
 
   useEffect(() => {
     setGrid(initializeGrid());
@@ -254,7 +265,7 @@ const CrosswordPage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <GamesMenu activeGame="кроссворд" solvedCrosswords={solvedCount} totalCrosswords={10} />
 
       <div className={styles.crosswordContainer}>
@@ -270,19 +281,16 @@ const CrosswordPage = () => {
                 const isRevealed = cell.revealed;
 
                 return (
-                  <div
-                    key={`${rowIndex}-${colIndex}`}
-                    className={`
-                                            ${styles.cell}
-                                            ${isEmpty ? styles.empty : ''}
-                                            ${isSelected ? styles.selected : ''}
-                                            ${isSolved ? styles.solved : ''}
-                                        `}
-                    onClick={() => !allRevealed && handleCellClick(rowIndex, colIndex)}
-                  >
-                    {(isSolved || isRevealed) && cell.value}
-                    {!isEmpty && !isSolved && !isRevealed && cell.clueIds[0]?.charAt(0)}
-                  </div>
+                <div
+                      key={`${rowIndex}-${colIndex}`}
+                      className={`${styles.cell} ${isEmpty ? styles.empty : ''} ${isSelected ? styles.selected : ''} ${isSolved ? styles.solved : ''}`}
+                      onClick={() => !allRevealed && handleCellClick(rowIndex, colIndex)}
+                    >
+                     {!isEmpty && !isSolved && !isRevealed && cell.clueNumber && (
+                        <span className={styles.cellNumber}>{cell.clueNumber}</span>
+                      )}
+                      {(isSolved || isRevealed) && cell.value}
+                </div>
                 );
               })}
             </div>
@@ -292,8 +300,8 @@ const CrosswordPage = () => {
         <div className={styles.controls}>
           {selectedClue ? (
             <form onSubmit={handleSubmit} className={styles.form}>
-              <h3>Подсказка:</h3>
-              <p>{selectedClue.clue}</p>
+              <span>Подсказка #{clueNumberMap[selectedClue.id]}:</span>
+              <p className={styles.clue}>{selectedClue.clue}</p>
 
               <div className={styles.inputGroup}>
                 <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} autoFocus style={{ textTransform: 'uppercase' }} />
@@ -364,7 +372,7 @@ const CrosswordPage = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </section>
   );
 };
 

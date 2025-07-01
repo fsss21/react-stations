@@ -11,12 +11,6 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useLanguage } from '../../LanguageContext';
 
-const categoryTranslations = {
-  pilots: 'летчики',
-  engineers: 'инженеры',
-  researchers: 'исследователи'
-};
-
 const PersonaliPage = () => {
   const { isEnabled } = useSelector((state) => state.accessibility);
   const [currentCategory, setCurrentCategory] = useState('pilots');
@@ -62,13 +56,11 @@ const PersonaliPage = () => {
     }
   };
 
-  const enabledClass = isEnabled ? styles.enabledButton : '';
-
   return (
     <>
-      <div className={styles.container}>
+      <section className={styles.container}>
         <Header />
-        <span className={styles.title}>Персоналии</span>
+        <span className={styles.title}>{dataTranslation.buttonPersonali}</span>
         <div className={styles.categorySelector}>
           {Object.keys(data).map((category) => (
             <button
@@ -76,7 +68,7 @@ const PersonaliPage = () => {
               onClick={() => setCurrentCategory(category)}
               className={currentCategory === category ? (isEnabled ? styles.enabledActive : styles.active) : ''}
             >
-              {categoryTranslations[category] || category.toUpperCase()}
+              {dataTranslation[category] || category.toUpperCase()}
             </button>
           ))}
         </div>
@@ -108,7 +100,7 @@ const PersonaliPage = () => {
           </button>
         </div>
         <Footer />
-      </div>
+      </section>
     </>
   );
 };

@@ -27,8 +27,8 @@ const Biography = ({ data, images }) => {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.biography}>
+      <section className={styles.container}>
+        <div className={styles.containerTime}>
           <p className={styles.title}>{data.title}</p>
           <p className={styles.content}>{data.content}</p>
           <SnakeTimeline events={data.awards} />
@@ -52,7 +52,7 @@ const Biography = ({ data, images }) => {
             </button>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

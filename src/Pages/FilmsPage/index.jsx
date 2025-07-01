@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './FilmsPage.module.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -15,6 +16,7 @@ const TABS = {
 };
 
 const FilmsPage = () => {
+  const { isEnabled } = useSelector((state) => state.accessibility);
   const [activeTab, setActiveTab] = useState(TABS.FILMS);
   const { data } = useLanguage();
 
@@ -47,29 +49,44 @@ const FilmsPage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <Header />
-      <h1 className={styles.mainTitle}>Фильмы и книги</h1>
+      <span className={styles.mainTitle}>{data.mediaTitle}</span>
 
       <div className={styles.tabsMenu}>
-        <button className={`${styles.tabButton} ${activeTab === TABS.FILMS ? styles.active : ''}`} onClick={() => setActiveTab(TABS.FILMS)}>
-          Фильмы
+        <button
+          className={`${styles.tabButton} ${activeTab === TABS.FILMS ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+          onClick={() => setActiveTab(TABS.FILMS)}
+        >
+          {data.tabFilms}
         </button>
-        <button className={`${styles.tabButton} ${activeTab === TABS.AUDIOBOOKS ? styles.active : ''}`} onClick={() => setActiveTab(TABS.AUDIOBOOKS)}>
-          Аудиокниги
+
+        <button
+          className={`${styles.tabButton} ${activeTab === TABS.AUDIOBOOKS ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+          onClick={() => setActiveTab(TABS.AUDIOBOOKS)}
+        >
+          {data.tabAudiobooks}
         </button>
-        <button className={`${styles.tabButton} ${activeTab === TABS.LECTURES ? styles.active : ''}`} onClick={() => setActiveTab(TABS.LECTURES)}>
-          Лекции
+
+        <button
+          className={`${styles.tabButton} ${activeTab === TABS.LECTURES ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+          onClick={() => setActiveTab(TABS.LECTURES)}
+        >
+          {data.tabLectures}
         </button>
-        <button className={`${styles.tabButton} ${activeTab === TABS.BOOKS ? styles.active : ''}`} onClick={() => setActiveTab(TABS.BOOKS)}>
-          Книги
+
+        <button
+          className={`${styles.tabButton} ${activeTab === TABS.BOOKS ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+          onClick={() => setActiveTab(TABS.BOOKS)}
+        >
+          {data.tabBooks}
         </button>
       </div>
 
       <div className={styles.content}>{renderTabContent()}</div>
 
       <Footer />
-    </div>
+    </section>
   );
 };
 

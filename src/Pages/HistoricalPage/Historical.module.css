@@ -9,12 +9,11 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .operation {
     position: absolute;
     cursor: pointer;
-
 }
-
 
 /* версия слабовидящих включена */
 

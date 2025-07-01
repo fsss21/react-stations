@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
   background-image: url('../../../assets/bg_menu_img.jpg');
   background-size: cover;
@@ -28,7 +28,7 @@
   border-bottom: 2px solid rgba(34, 57, 65, 1);
   font-family: 'Snowstorm', arial;
   text-transform: uppercase;
-  width: 350px;
+  width: 340px;
   font-size: 62px;
   color: rgba(34, 57, 65, 1);
 }

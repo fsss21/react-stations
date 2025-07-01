@@ -1,22 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
+import { quizData } from '../../../data/games.js';
+
+import { useSelector } from 'react-redux';
+
 import styles from './QuizPage.module.css';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
-import { quizData } from '../../../data/games.js';
 import QuizModal from './QuizModal';
 
 const QuizPage = () => {
   const navigate = useNavigate();
+  const { isEnabled } = useSelector((state) => state.accessibility);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
-  const [gameSeconds, setGameSeconds] = useState(0); // Добавляем состояние для времени
+  const [gameSeconds, setGameSeconds] = useState(0);
+  const timerRef = useRef(null);
 
   const currentQuestion = quizData[currentQuestionIndex];
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleAnswerSelect = (answerId) => {
     if (currentQuestion.multiAnswer) {
@@ -31,20 +44,43 @@ const QuizPage = () => {
   };
 
   const checkAnswer = () => {
-    const correctAnswers = currentQuestion.answers.filter((answer) => answer.correct).map((answer) => answer.id);
+    const correctAnswers = currentQuestion.answers
+      .filter((answer) => answer.correct)
+      .map((answer) => answer.id);
 
-    const isAnswerCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every((answer) => correctAnswers.includes(answer));
+    const isAnswerCorrect = 
+      selectedAnswers.length === correctAnswers.length && 
+      selectedAnswers.every((answer) => correctAnswers.includes(answer));
 
     setIsCorrect(isAnswerCorrect);
     setShowModal(true);
 
-    // Увеличиваем счетчик, если ответ правильный
     if (isAnswerCorrect) {
       setCorrectAnswersCount((prev) => prev + 1);
+      
+      // Автоматический переход при правильном ответе через 3 секунды
+      timerRef.current = setTimeout(() => {
+        goToNextQuestion();
+      }, 3000);
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleRevealCorrectAnswer = () => {
+    setShowModal(false);
+    setShowCorrectAnswer(true);
+    
+    // Автоматический переход после показа правильного ответа
+    timerRef.current = setTimeout(() => {
+      goToNextQuestion();
+    }, 2000);
+  };
+
+  const goToNextQuestion = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    
     setSelectedAnswers([]);
     setShowModal(false);
     setShowCorrectAnswer(false);
@@ -52,41 +88,46 @@ const QuizPage = () => {
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // Переходим на страницу поздравления с передачей статистики
       navigate('/congrats', {
         state: {
           game: 'викторина',
           score: correctAnswersCount,
           total: quizData.length,
-          time: gameSeconds // Передаем затраченное время
+          time: gameSeconds
         }
       });
     }
   };
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setGameSeconds((prev) => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleTryAgain = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
     setShowModal(false);
     setSelectedAnswers([]);
   };
 
-  const revealCorrectAnswer = () => {
-    setShowCorrectAnswer(true);
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setGameSeconds((prev) => prev + 1);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const basicQuestion = styles.question;
+  const enabledQuestion = isEnabled ? styles.enabled_question : '';
+  const basicContent = styles.content;
+  const enabledContent = isEnabled ? styles.enabled_content : '';
 
   return (
     <>
-      <div className={styles.container}>
-        <GamesMenu correctAnswersCount={correctAnswersCount} totalQuestions={quizData.length} />
-        <div className={styles.content}>
-          <div className={styles.question}>
-            <h3 className={styles.number}>вопрос №{currentQuestion.id}</h3>
+      <section className={styles.container}>
+        <GamesMenu correctAnswersCount={correctAnswersCount} totalQuestions={quizData.length}   />
+        <div className={`${basicContent} ${enabledContent}`}>
+          <div className={`${basicQuestion} ${enabledQuestion}`}>
+            <span className={styles.number}>вопрос №{currentQuestion.id}</span>
             <span className={styles.text}>
               {currentQuestion.question}
               <br />
@@ -99,22 +140,38 @@ const QuizPage = () => {
             )}
           </div>
           <div className={styles.answers}>
-            {currentQuestion.answers.map((answer) => (
-              <button
-                key={answer.id}
-                className={`${styles.answer} ${selectedAnswers.includes(answer.id) ? styles.selected : ''} ${
-                  showCorrectAnswer && answer.correct ? styles.correct : ''
-                }`}
-                onClick={() => handleAnswerSelect(answer.id)}
-              >
-                {answer.id}. {answer.text}
-              </button>
-            ))}
+            {currentQuestion.answers.map((answer) => {
+              const isSelected = selectedAnswers.includes(answer.id);
+              const showAsCorrect = showCorrectAnswer && answer.correct;
+              const showAsIncorrect = showCorrectAnswer && isSelected && !answer.correct;
+              
+              return (
+                <button
+                  key={answer.id}
+                  className={`${styles.answer} 
+                    ${isSelected ? styles.selected : ''}
+                    ${showAsCorrect ? styles.correct : ''}
+                    ${showAsIncorrect ? styles.incorrect : ''}
+                  `}
+                  onClick={() => handleAnswerSelect(answer.id)}
+                >
+                  {answer.id}. {answer.text}
+                </button>
+              );
+            })}
             <div className={styles.buttons}>
               <button
                 className={styles.button}
                 disabled={currentQuestionIndex === 0}
-                onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
+                onClick={() => {
+                  if (timerRef.current) {
+                    clearTimeout(timerRef.current);
+                    timerRef.current = null;
+                  }
+                  setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
+                  setSelectedAnswers([]);
+                  setShowCorrectAnswer(false);
+                }}
               >
                 предыдущий <br /> вопрос
               </button>
@@ -125,8 +182,13 @@ const QuizPage = () => {
                 className={styles.button}
                 disabled={currentQuestionIndex === quizData.length - 1}
                 onClick={() => {
+                  if (timerRef.current) {
+                    clearTimeout(timerRef.current);
+                    timerRef.current = null;
+                  }
                   setCurrentQuestionIndex(currentQuestionIndex + 1);
                   setSelectedAnswers([]);
+                  setShowCorrectAnswer(false);
                 }}
               >
                 следующий <br /> вопрос
@@ -135,9 +197,16 @@ const QuizPage = () => {
           </div>
         </div>
         <Footer />
-      </div>
+      </section>
 
-      {showModal && <QuizModal isCorrect={isCorrect} onTryAgain={handleTryAgain} onRevealAnswer={revealCorrectAnswer} onNextQuestion={handleNextQuestion} />}
+      {showModal && (
+        <QuizModal 
+          isCorrect={isCorrect} 
+          onTryAgain={handleTryAgain} 
+          onRevealCorrectAnswer={handleRevealCorrectAnswer}
+          autoClose={isCorrect}
+        />
+      )}
     </>
   );
 };

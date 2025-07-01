@@ -11,6 +11,9 @@ const Header = () => {
   const location = useLocation();
   const isMainPage = location.pathname === '/main';
   const isGamesPage = location.pathname === '/games';
+  const isGameItemPage = location.pathname === '/puzzle' || location.pathname === '/crossword' || location.pathname === '/quiz';
+  const IsFinalGamePage = location.pathname === '/congrats' || location.pathname === '/certificate-form' || location.pathname === '/thanks';
+
 
   const dispatch = useDispatch();
   const { isEnabled, colorScheme, schemes } = useSelector((state) => state.accessibility);
@@ -24,8 +27,11 @@ const Header = () => {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [selectedExhibit, setSelectedExhibit] = useState(null);
 
+  const basicClass = styles.header;
+  const enabledClass = isEnabled ? styles.header_enabled : '';
+
   return (
-    <div className={styles.header}>
+    <div className={`${enabledClass} ${basicClass}`}>
       {/* Всегда отображаем colorPicker при включенной доступности */}
       {isEnabled && (
         <div className={styles.colorPicker}>
@@ -49,26 +55,28 @@ const Header = () => {
         </div>
       )}
       {/* Показываем первые три кнопки везде, кроме /games */}
-      {!isGamesPage && (
-        <>
-          <button onClick={() => dispatch(toggleAccessibility())} className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>
-            {isEnabled ? data.accessibilityNormal : data.accessibilityToggle}
-          </button>
-          <button onClick={() => setIsCatalogOpen(true)} className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>
-            {data.catalog}
-          </button>
-          <button className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>{data.audioguide}</button>
-        </>
-      )}
+      <div>
+        {!isGamesPage && !isGameItemPage && !IsFinalGamePage && (
+          <>
+            <button onClick={() => dispatch(toggleAccessibility())} className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>
+              {isEnabled ? data.accessibilityNormal : data.accessibilityToggle}
+            </button>
+            <button onClick={() => setIsCatalogOpen(true)} className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>
+              {data.catalog}
+            </button>
+            <button className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''}`}>{data.audioguide}</button>
+          </>
+        )}
 
-      {/* Кнопка "ru" всегда отображается с разными стилями */}
-      <button
-        onClick={toggleLang}
-        className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''} 
+        {/* Кнопка "ru" всегда отображается с разными стилями */}
+        <button
+          onClick={toggleLang}
+          className={`${styles.button_header} ${isMainPage ? styles.button_header_main : ''} 
                 ${isGamesPage ? styles.button_header_games : ''}`}
-      >
-        {lang}
-      </button>
+        >
+          {lang}
+        </button>
+      </div>
       {/* Модальное окно каталога */}
       {isCatalogOpen && (
         <CatalogModal

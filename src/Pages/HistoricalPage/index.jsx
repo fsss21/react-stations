@@ -6,42 +6,44 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useLanguage } from '../../LanguageContext';
 import { operationStyles } from '../../data/data';
+import React from 'react';
 
 const HistoricalPage = () => {
   const { isEnabled } = useSelector((state) => state.accessibility);
   const navigate = useNavigate();
-  const { data } = useLanguage();
+  const { data = {} } = useLanguage();
+  const operations = Array.isArray(data.operations) ? data.operations : [];
 
   const handleItemClick = (id) => {
     navigate(`/history-item/${id}`);
   };
 
+  console.log(data);
+
   return (
     <>
-      <div className={styles.container}>
+      <section className={styles.container}>
         <Header />
         {isEnabled ? (
           <div className={styles.content}>
-            <span className={styles.title}>ИСТОРИЧЕСКИЙ ОБЗОР</span>
+            <span className={styles.title}>{data.sectionHistoryTitle}</span>
 
-            {data?.operations?.map?.((operation) => {
-              return (
-                <>
-                  <span className={styles.subTitle}>{operation.title} </span>
-                  <span className={styles.info} onClick={() => handleItemClick(operation.id)}>
-                    узнать подробнее
-                  </span>
-                </>
-              );
-            })}
+            {operations.map?.((operation) => (
+              <React.Fragment key={operation.id}>
+                <span className={styles.subTitle}>{operation.title}</span>
+                <span className={styles.info} onClick={() => handleItemClick(operation.id)}>
+                  {data.learnMore}
+                </span>
+              </React.Fragment>
+            ))}
           </div>
         ) : (
-          data?.operations?.map((operation) => (
+          operations.map((operation) => (
             <div key={operation.id} className={styles.operation} style={operationStyles[operation.id]} onClick={() => handleItemClick(operation.id)} />
           ))
         )}
         <Footer />
-      </div>
+      </section>
     </>
   );
 };

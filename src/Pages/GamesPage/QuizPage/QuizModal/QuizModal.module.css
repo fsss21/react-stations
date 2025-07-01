@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,22 @@
     height: 588px;
 }
 
-.modal h2 {
+/* версия слабовидящих включена */
+
+.modal_enabled {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    background-color: #fff;
+    width: 1043px;
+    height: 588px;
+}
+
+/* версия слабовидящих включена */
+
+.modal span {
     font-size: 55px;
     font-weight: bold;
     color: #2d444a;

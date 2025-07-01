@@ -22,10 +22,20 @@
     width: 100%;
 }
 
+
+/* версия слабовидящих включена */
+
+.content_enabled {
+    bottom: 38%;
+}
+
+/* версия слабовидящих включена */
+
 .title {
     text-transform: uppercase;
     color: #fff;
     font-size: 80px;
+    font-weight: bold;
 }
 
 .buttons {
@@ -50,3 +60,13 @@
     color: rgba(255, 255, 255, 1);
     box-shadow: 4px 4px 41px 0px rgba(34, 60, 80, 0.46);
 }
+
+/* версия слабовидящих включена */
+
+.button_enabled {
+    box-shadow: none;
+    font-weight: bold;
+}
+
+
+/* версия слабовидящих включена */

@@ -26,18 +26,18 @@ const BooksTab = ({ items }) => {
 
     return (
         <>
-            <div className={styles.mediaGrid}>
+            <section className={styles.mediaGrid}>
                 {visibleItems.map((item, index) => (
                     <div key={`book-${index}-${currentPage}`} className={styles.mediaCard}>
                         <div className={styles.imageWrapper}>
                             <img src={item.src} alt={item.title} className={styles.mediaContent} loading="lazy" />
                         </div>
                         <div className={styles.mediaInfo}>
-                            <h3 className={styles.mediaTitle}>{item.title}</h3>
+                            <span className={styles.mediaTitle}>{item.title}</span>
                         </div>
                     </div>
                 ))}
-            </div>
+            </section>
 
             {totalPages > 1 && (
                 <div className={styles.controls}>

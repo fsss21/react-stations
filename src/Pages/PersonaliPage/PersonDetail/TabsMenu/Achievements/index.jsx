@@ -26,8 +26,8 @@ const Achievements = ({ achievements, images }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.biography}>
+    <section className={styles.container}>
+      <div className={styles.containerTime}>
         <SnakeTimeline events={achievements} />
       </div>
 
@@ -50,7 +50,7 @@ const Achievements = ({ achievements, images }) => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

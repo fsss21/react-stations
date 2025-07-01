@@ -39,18 +39,18 @@ const FilmsTab = ({ items }) => {
 
     return (
         <>
-            <div className={styles.mediaGrid}>
+            <section className={styles.mediaGrid}>
                 {visibleItems.map((item, index) => (
                     <div key={`film-${index}-${currentPage}`} className={styles.mediaCard}>
                         <div className={styles.videoWrapper}>
                             <video loop playsInline controls src={item.src} className={styles.mediaContent} preload="none" />
                         </div>
                         <div className={styles.mediaInfo}>
-                            <h3 className={styles.mediaTitle}>{item.title}</h3>
+                            <span className={styles.mediaTitle}>{item.title}</span>
                         </div>
                     </div>
                 ))}
-            </div>
+            </section>
 
             {totalPages > 1 && (
                 <div className={styles.controls}>

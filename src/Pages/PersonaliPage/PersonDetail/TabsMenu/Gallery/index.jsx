@@ -24,7 +24,7 @@ const Gallery = ({ images }) => {
         }
     };
     return (
-        <div className={styles.galleryGrid}>
+        <section className={styles.galleryGrid}>
             {currentImages.map((img, index) => (
                 <div key={index} className={styles.galleryItem}>
                     <img className={styles.galleryImage} src={img.src} alt={img.title} />
@@ -43,7 +43,7 @@ const Gallery = ({ images }) => {
                     <ArrowRightIcon style={{ width: '70px', height: '70px' }} />
                 </button>
             </div>
-        </div>
+        </section>
     );
 };
 

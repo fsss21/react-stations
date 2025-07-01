@@ -7,13 +7,14 @@
 
 .buttons {
     display: flex;
+    align-items: flex-start;
     padding: 15px;
     gap: 30px;
     width: 800px;
 }
 
 .button {
-    padding: 15px;
+    padding: 12px;
     width: 100%;
     border-radius: 40px;
     text-transform: uppercase;
@@ -27,11 +28,62 @@
     color: #fff;
 }
 
+.active {
+    outline: solid 2px rgb(255, 255, 255) !important;
+    outline-offset: 4px;
+    border: solid 4px rgb(34, 60, 80, 0.46);
+    box-shadow: 0px 5px 8px 14px rgba(255, 255, 255, 0.38);
+}
+
+/* версия слабовидящих включена */
+
+.button_enabled{
+    border-radius: 0;
+}
+
+.enabledActive{
+    border-bottom: 2px solid #000;
+
+}
+
+/* версия слабовидящих включена */
+
 .timer {
     display: flex;
     padding: 15px;
     gap: 20px;
 }
+
+/* версия слабовидящих включена */
+
+.timer_enabled {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    gap: 20px;
+}
+
+.timeEnabled{
+    margin-right: 133px;
+    padding: 15px;
+    border-radius: 30px;
+    border: solid 2px rgba(139, 194, 206, 1);
+    font-size: 35px;
+    font-weight: normal;
+    color: #fff;
+}
+
+.answersEnabled{
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: lighter;
+    color: #fff;
+}
+
+/* версия слабовидящих включена */
 
 .answers {
     padding: 15px;
@@ -43,6 +95,7 @@
 }
 
 .time {
+    margin-right: 133px;
     padding: 15px;
     border-radius: 30px;
     border: solid 2px rgba(139, 194, 206, 1);
@@ -68,9 +121,4 @@
     box-shadow: 4px 4px 41px 0px rgba(34, 60, 80, 0.46);
 }
 
-.active {
-    outline: solid 2px rgb(255, 255, 255) !important;
-    outline-offset: 4px;
-    border: solid 4px rgb(34, 60, 80, 0.46);
-    box-shadow: 0px 5px 8px 14px rgba(255, 255, 255, 0.38);
-}
+
