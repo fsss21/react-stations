@@ -20,7 +20,7 @@ const MenuPhoto = ({ images = [] }) => {
   };
 
   if (totalPhotos === 0) {
-    return <div className={styles.content}>Нет фотографий</div>;
+    return <div className={styles.emptyContent}>Нет фотографий</div>;
   }
 
   return (

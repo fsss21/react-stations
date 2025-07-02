@@ -2,8 +2,18 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    position: absolute;
+    top: 8%;
+    right: 1%;
     width: 50%;
     margin-top: 250px;
+}
+
+.contentEmpty{
+    top: 50%;
+    right: 1%;
+    position: absolute;
+    font-size: 30px
 }
 
 
@@ -15,7 +25,6 @@
     overflow: hidden;
 }
 
-/* Стили для контейнера с картинкой */
 .audioCover {
     width: 150px;
     height: 150px;
@@ -31,6 +40,8 @@
 .enabledAudioCover{
     background-image: url('../../../assets/button_audio_enabled_img.png');
 }
+
+/* Стили для контейнера с картинкой */
 
 .audioGrid {
     display: grid;

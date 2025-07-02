@@ -1,9 +1,18 @@
 .container {
     display: flex;
     justify-content: space-between;
-    position: relative;
+    position: absolute;
+    top: 8%;
+    right: 1%;
     width: 50%;
     margin-top: 200px;
+}
+
+.Emptycontent{
+    top: 50%;
+    right: 22%;
+    position: absolute;
+    font-size: 30px
 }
 
 .textBlock {

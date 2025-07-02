@@ -7,9 +7,11 @@ import Footer from '../../../components/Footer';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
+import { useSelector } from 'react-redux';
 
 const CrosswordPage = () => {
   const navigate = useNavigate();
+  const { isEnabled } = useSelector((state) => state.accessibility);
   const [grid, setGrid] = useState([]);
   const [selectedClue, setSelectedClue] = useState(null);
   const [inputValue, setInputValue] = useState('');
@@ -246,6 +248,7 @@ const CrosswordPage = () => {
       });
     }, 1500);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -263,6 +266,13 @@ const CrosswordPage = () => {
       setInputValue((prev) => prev.slice(0, -1));
     }
   };
+
+  const basicKeyboardTheme = styles.keyboardTheme 
+  const enabledKeyboardTheme = isEnabled ? styles.enabledKeyboardTheme : '';
+  const basicKeyboardDefaultBtn = styles.keyboardDefaultBtn
+  const enabledKeyboardDefaultBtn = isEnabled ? styles.enabledKeyboardDefaultBtn : '';
+  const basicKeyboardDeleteBtn = styles.keyboardDeleteBtn 
+  const enabledKeyboardDeleteBtn  = isEnabled ? styles.enabledKeyboardDeleteBtn  : '';
 
   return (
     <section className={styles.container}>
@@ -357,15 +367,15 @@ const CrosswordPage = () => {
                 }}
                 buttonTheme={[
                   {
-                    class: styles.keyboardDefaultBtn, // Ваш класс для обычных кнопок
+                    class: `${basicKeyboardDefaultBtn} ${enabledKeyboardDefaultBtn}`,// Ваш класс для обычных кнопок
                     buttons: 'Й Ц У К Е Н Г Ш Щ З Х Ъ Ф Ы В А П Р О Л Д Ж Э Я Ч С М И Т Ь Б Ю'
                   },
                   {
-                    class: `${styles.keyboardDeleteBtn} hg-button hg-button-bksp`, // Добавлены обязательные классы
+                    class: `${`${basicKeyboardDeleteBtn} ${enabledKeyboardDeleteBtn}`} hg-button hg-button-bksp`, // Добавлены обязательные классы
                     buttons: '{bksp}'
                   }
                 ]}
-                theme={`hg-theme-default ${styles.keyboardTheme}`}
+                theme={`hg-theme-default ${`${basicKeyboardTheme} ${enabledKeyboardTheme}`}`}
               />
             </div>
           )}

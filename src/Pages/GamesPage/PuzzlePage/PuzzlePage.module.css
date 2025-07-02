@@ -200,3 +200,72 @@
     border: solid 2px #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.sliderButton {
+  background: #4a76a8;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s;
+}
+
+.sliderButton:hover:not(:disabled) {
+  background: #3a5f8d;
+}
+
+.sliderButton:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.sliderButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.puzzles {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: calc(100% - 100px);
+}
+
+/* Стили для точек навигации */
+.sliderDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.activeDot {
+  background: #4a76a8;
+}
+
+.dot:hover {
+  background: #888;
+}

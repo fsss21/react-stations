@@ -3,7 +3,7 @@ import styles from './MenuVideo.module.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
-const MenuVideo = ({ videos }) => {
+const MenuVideo = ({ videos=[] }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const videosPerPage = 4;
   const totalPages = Math.ceil(videos.length / videosPerPage);
@@ -21,7 +21,7 @@ const MenuVideo = ({ videos }) => {
   };
 
   if (videos?.length === 0) {
-    return <div className={styles.content}>Нет видео</div>;
+    return <div className={styles.Emptycontent}>Нет видео</div>;
   }
 
   return (

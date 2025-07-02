@@ -6,10 +6,10 @@ import { useLanguage } from '../../../LanguageContext.jsx';
 
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft'; // Добавлена новая иконка
 import styles from './PuzzlePage.module.css';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
-
 
 const PuzzlePage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,23 @@ const PuzzlePage = () => {
   const [timerActive, setTimerActive] = useState(false);
   const [currentPuzzleTime, setCurrentPuzzleTime] = useState(0);
   const [showHint, setShowHint] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0); // Новое состояние для слайдера
   const { data } = useLanguage();
+
+  // Функции для навигации по слайдеру
+  const goToPrevSlide = () => {
+    setCurrentSlide(prev => Math.max(0, prev - 1));
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide(prev => Math.min(Math.ceil(puzzleData.length / 3) - 1, prev + 1));
+  };
+
+  // Вычисляем пазлы для текущего слайда
+  const getVisiblePuzzles = () => {
+    const startIndex = currentSlide * 3;
+    return puzzleData.slice(startIndex, startIndex + 3);
+  };
 
   // Вычисляем количество деталей для текущего уровня сложности
   const getCurrentPuzzlePieces = () => {
@@ -97,25 +113,56 @@ const PuzzlePage = () => {
     );
   }, [completedPuzzles, gameSeconds]);
 
-  
-
   if (!gameStarted) {
+    const visiblePuzzles = getVisiblePuzzles();
+    const isFirstSlide = currentSlide === 0;
+    const isLastSlide = currentSlide === Math.ceil(puzzleData.length / 3) - 1;
+
     return (
       <section className={styles.container}>
         <GamesMenu hideStats={true} />
         <div className={styles.selectionContainer}>
-          <div className={styles.puzzles}>
-            {puzzleData.map((puzzle) => (
-              <div
-                key={puzzle.id}
-                className={`${styles.puzzleCard} ${selectedPuzzle?.id === puzzle.id ? styles.selected : ''}`}
-                onClick={() => setSelectedPuzzle(puzzle)}
-              >
-                <div className={styles.statusIndicator}>{puzzle.completed ? '✓' : ''}</div>
-                <img src={puzzle.imageSrc} alt={puzzle.title} className={styles.puzzleImage} />
-              </div>
-            ))}
+          <div className={styles.sliderContainer}>
+            <button 
+              className={`${styles.sliderButton} ${isFirstSlide ? styles.disabled : ''}`} 
+              onClick={goToPrevSlide}
+              disabled={isFirstSlide}
+            >
+              <ArrowLeftIcon />
+            </button>
+            
+            <div className={styles.puzzles}>
+              {visiblePuzzles.map((puzzle) => (
+                <div
+                  key={puzzle.id}
+                  className={`${styles.puzzleCard} ${selectedPuzzle?.id === puzzle.id ? styles.selected : ''}`}
+                  onClick={() => setSelectedPuzzle(puzzle)}
+                >
+                  <div className={styles.statusIndicator}>{puzzle.completed ? '✓' : ''}</div>
+                  <img src={puzzle.imageSrc} alt={puzzle.title} className={styles.puzzleImage} />
+                </div>
+              ))}
+            </div>
+            
+            <button 
+              className={`${styles.sliderButton} ${isLastSlide ? styles.disabled : ''}`} 
+              onClick={goToNextSlide}
+              disabled={isLastSlide}
+            >
+              <ArrowRightIcon />
+            </button>
           </div>
+          
+          {/* <div className={styles.sliderDots}>
+            {Array.from({ length: Math.ceil(puzzleData.length / 3) }).map((_, index) => (
+              <span 
+                key={index} 
+                className={`${styles.dot} ${currentSlide === index ? styles.activeDot : ''}`}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
+          </div> */}
+
           <p className={styles.title}>{data.difficultyTitle}</p>
 
           <div className={styles.difficultyContainerVertical}>
@@ -145,14 +192,11 @@ const PuzzlePage = () => {
     );
   }
 
-  
-
   const difficulty = difficultyLevels.find((l) => l.id === selectedDifficulty);
-  const puzzlePieces = difficulty.rows * difficulty.columns; // Вычисляем количество деталей
+  const puzzlePieces = difficulty.rows * difficulty.columns;
 
   return (
     <section className={styles.container}>
-      {/* Передаем количество деталей в GamesMenu */}
       <GamesMenu completedPuzzles={completedPuzzles} totalPuzzles={totalPuzzles} initialSeconds={gameSeconds} puzzlePieces={puzzlePieces} />
 
       <div className={styles.gameContainer}>

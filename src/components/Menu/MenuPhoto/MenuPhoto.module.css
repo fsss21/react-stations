@@ -4,7 +4,16 @@
   flex-wrap: wrap;
   align-items: center;
   position: relative;
-  margin-top: 200px;
+  position: absolute;
+  top: 19%;
+  right: 5%;
+}
+
+.emptyContent{
+    top: 50%;
+    right: 22%;
+    position: absolute;
+    font-size: 30px
 }
 
 .title {
@@ -25,8 +34,9 @@
 }
 
 .img {
-  max-width: 910px;
-  height: 500px;
+  max-width: 710px;
+  height: 600px;
+  margin: 10px;
 }
 
 .controls {
