@@ -297,5 +297,75 @@ export const ru = {
     audioBooks: [],
     lectures: [],
     books: []
-  }
+  },
+  exhibitsData: [
+    {
+      id: 1,
+      name: 'Ваза эпохи Цинь',
+      images: [
+        'https://i.pinimg.com/736x/d9/cb/b5/d9cbb5972f4855ac1cb6fcb3f095486d.jpg',
+        'https://i.pinimg.com/736x/2e/c0/ca/2ec0ca86151ab5d18626ee34487e0e99.jpg',
+        'https://avatars.mds.yandex.net/i?id=a0ac2453e18891a51065a18a6d0b932a11ad4be9-5388887-images-thumbs&n=13'
+      ],
+      date: '221 г. до н.э.',
+      material: 'Фарфор',
+      size: '45×30 см',
+      description: 'Искусно выполненная ваза с сине-белым орнаментом...'
+    },
+    {
+      id: 2,
+      name: 'Бронзовый меч Хань',
+      images: [
+        'https://avatars.mds.yandex.net/i?id=80a6d53c70733eeeb2468fdec9e186bc_l-5179194-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=ef452bbbc1f810b133c07ca846353dcb78f510ab-5294137-images-thumbs&n=13'
+      ],
+      date: '206 г. до н.э. - 220 г. н.э.',
+      material: 'Бронза',
+      size: '78×8 см',
+      description:
+        'Церемониальный меч эпохи Хань с инкрустацией золотом. Клинок украшен символикой неба и земли, характерной для конфуцианской традиции. Отличная сохранность демонстрирует мастерство древних металлургов.'
+    },
+    {
+      id: 3,
+      name: 'Шёлковый свиток Тан',
+      images: [
+        'https://avatars.mds.yandex.net/i?id=c325000056bd3d08774795d436f9764cf26954c3-4552028-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=11383ffb762db0e19ab44f9f7e338a9318222d28-5859422-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=8e85d04bb886fd3408df6eb190daa366e4295a35-7149282-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=8e85d04bb886fd3408df6eb190daa366e4295a35-7149282-images-thumbs&n=13'
+      ],
+      date: '618-907 гг.',
+      material: 'Шёлк, минеральные пигменты',
+      size: '120×45 см',
+      description:
+        "Свиток с пейзажной живописью эпохи Тан, изображающий горный массив Хуаншань. Работа демонстрирует характерную для периода технику 'сине-зеленых пейзажей'. Сохранились подписи трёх владельцев XVII века."
+    },
+    {
+      id: 4,
+      name: 'Нефритовый диск Би',
+      images: [
+        'https://avatars.mds.yandex.net/i?id=041196872fccb611f18129b53c0fdb4068e928c7-5220281-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=e88971888dbc82dc6f1a4cc8c609590e-5734541-images-thumbs&n=13'
+      ],
+      date: '2500-2000 гг. до н.э.',
+      material: 'Нефрит',
+      size: 'Ø 22 см',
+      description:
+        'Ритуальный диск культуры Лянчжу с характерным отверстием в центре. Символизировал небо в древних космогонических культах. Полировка поверхности достигнута многолетней обработкой бамбуком и водой.'
+    },
+    {
+      id: 5,
+      name: 'Терракотовый музыкант',
+      images: [
+        'https://avatars.mds.yandex.net/i?id=61c68d96eedcf83c4f2530c7a1ed042de9db9ba2-10147998-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=3cdd91f76f48839b7ff94d8d3fdd42eabf881a09-10197150-images-thumbs&n=13',
+        'https://avatars.mds.yandex.net/i?id=dbf583607b8b008a6b74fcab042fd24bdd004ade-10356912-images-thumbs&n=13'
+      ],
+      date: 'VIII век',
+      material: 'Глина, минеральные пигменты',
+      size: '38×22×18 см',
+      description:
+        'Фигурка музыканта с лютной пипа из захоронения эпохи Тан. Представитель ансамбля из 12 музыкантов, сопровождавших знатную особу в загробный мир. Сохранились фрагменты оригинальной росписи.'
+    }
+  ]
 };

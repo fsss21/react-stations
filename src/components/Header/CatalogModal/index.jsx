@@ -8,11 +8,10 @@ import { useLanguage } from '../../../LanguageContext';
 
 const CatalogModal = ({ onClose, onSelectExhibit }) => {
   const { isEnabled } = useSelector((state) => state.accessibility);
-
   const [visibleCount, setVisibleCount] = useState(4);
   const modalRef = useRef(null);
   const { data } = useLanguage();
-
+  const exhibitsData = data.exhibitsData || [];
   // Закрытие модального окна при клике вне его области
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,7 +35,7 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
   const catalogEnabled = isEnabled ? styles.catalogModal_enabled : '';
   const basicClass = styles.modalHeader 
   const enabledClass = isEnabled ? styles.modalHeader_enabled : '';
-
+  
 
   return (
     <div className={styles.modalOverlay}>
@@ -54,7 +53,7 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
 
         <div className={styles.modalContent}>
           <div className={styles.exhibitsGrid}>
-            {data.exhibitsData.slice(0, visibleCount).map((exhibit) => (
+            {exhibitsData.slice(0, visibleCount).map((exhibit) => (
               <div key={exhibit.id} className={styles.exhibitCard} onClick={() => handleExhibitClick(exhibit)}>
                 <img src={exhibit.images?.[0]} alt={exhibit.name} className={styles.thumbnail} />
                 {/* Отдельный блок для названия с собственным классом */}
@@ -65,9 +64,9 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
             ))}
           </div>
 
-          {visibleCount < data.exhibitsData.length && (
-            <button className={styles.loadMore} onClick={() => setVisibleCount((prev) => prev + 2)}>
-              Показать еще
+          {exhibitsData.length > 0 && visibleCount < exhibitsData.length && (
+            <button className={styles.loadMore} onClick={() => setVisibleCount(prev => prev + 2)}>
+             Показать еще
             </button>
           )}
         </div>
