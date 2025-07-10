@@ -239,6 +239,7 @@ const handleKeyboardKeyPress = (button) => {
                     <div className={styles.formGroup}>
                         <label>ваше имя</label>
                         <input 
+								className={styles.fioEnter}
                             type="text" 
                             value={name} 
                             onChange={e => setName(e.target.value)}
@@ -250,6 +251,7 @@ const handleKeyboardKeyPress = (button) => {
                     <div className={styles.formGroup}>
                         <label>e-mail</label>
                         <input 
+								className={styles.fioEnter}
                           type="text"
                           inputMode="email"
                           value={email} 
