@@ -33,13 +33,11 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
 
   const catalogClass = styles.catalogModal;
   const catalogEnabled = isEnabled ? styles.catalogModal_enabled : '';
-  const basicClass = styles.modalHeader 
+  const basicClass = styles.modalHeader;
   const enabledClass = isEnabled ? styles.modalHeader_enabled : '';
-  
 
   return (
     <div className={styles.modalOverlay}>
-      
       <div ref={modalRef} className={`${catalogClass} ${catalogEnabled}`}>
         {/* Шапка модального окна */}
         <div className={`${basicClass} ${enabledClass}`}>
@@ -65,8 +63,8 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
           </div>
 
           {exhibitsData.length > 0 && visibleCount < exhibitsData.length && (
-            <button className={styles.loadMore} onClick={() => setVisibleCount(prev => prev + 2)}>
-             Показать еще
+            <button className={styles.loadMore} onClick={() => setVisibleCount((prev) => prev + 2)}>
+              Показать еще
             </button>
           )}
         </div>

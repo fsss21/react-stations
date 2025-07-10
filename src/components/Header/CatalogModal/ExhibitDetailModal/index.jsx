@@ -43,10 +43,8 @@ const ExhibitDetailModal = ({ exhibit, onClose, onBackToCatalog }) => {
 
   const detailClass = styles.detailModal;
   const detailEnabled = isEnabled ? styles.detailModal_enabled : '';
-  const basicClass = styles.modalHeader 
+  const basicClass = styles.modalHeader;
   const enabledClass = isEnabled ? styles.modalHeader_enabled : '';
-
-
 
   return (
     <div className={styles.modalOverlay}>

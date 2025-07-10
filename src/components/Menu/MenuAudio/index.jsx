@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import styles from './MenuAudio.module.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const MenuAudio = ({ audios = [] }) => {
-  const { isEnabled } = useSelector(state => state.accessibility);
+  const { isEnabled } = useSelector((state) => state.accessibility);
   const [currentPage, setCurrentPage] = useState(1);
   const audiosPerPage = 4;
   const totalPages = Math.ceil(audios.length / audiosPerPage);
-  
+
   // Состояния для управления аудиоплеером
   const [currentAudioId, setCurrentAudioId] = useState(null);
   const audioRef = useRef(null);
@@ -27,17 +28,17 @@ const MenuAudio = ({ audios = [] }) => {
       } else {
         audioRef.current.pause();
       }
-    } 
+    }
     // Если кликнули на новое аудио
     else {
       // Остановить предыдущее аудио
       if (audioRef.current) {
         audioRef.current.pause();
       }
-      
+
       // Установить новое аудио
       setCurrentAudioId(audio.src);
-      
+
       // Обновить источник и воспроизвести
       setTimeout(() => {
         if (audioRef.current) {
@@ -60,10 +61,10 @@ const MenuAudio = ({ audios = [] }) => {
   const AudioCard = ({ audio }) => {
     const isCurrent = currentAudioId === audio.src;
     const isPlaying = isCurrent && audioRef.current && !audioRef.current.paused;
-    
+
     return (
       <div className={styles.audioCard}>
-        <span 
+        <span
           className={`${styles.audioCover} 
             ${isEnabled ? styles.enabledAudioCover : ''}
             ${isPlaying ? styles.playing : ''}`}
@@ -81,46 +82,39 @@ const MenuAudio = ({ audios = [] }) => {
   return (
     <div className={styles.container}>
       {/* Скрытый аудио-элемент для управления воспроизведением */}
-      <audio 
-        ref={audioRef} 
-        onEnded={() => setCurrentAudioId(null)}
-        style={{ display: 'none' }}
-      />
-      
-      <div className={styles.content}>
+      <audio ref={audioRef} onEnded={() => setCurrentAudioId(null)} style={{ display: 'none' }} />
+
+      {audios.length === 1 ? ( 
+        // Отображение для единственной записи
+      <div className={styles.singleAudioContainer} >
+        <AudioCard audio={audios[0]} />
+      </div>
+      ) : (
+        // Стандартное отображение
+        <div className={styles.content}>
         <div className={styles.audioGrid}>
           {currentAudios.map((audio, index) => (
-            <AudioCard 
-              key={`${audio.src || index}-${currentPage}`} 
-              audio={audio} 
-            />
+            <AudioCard key={`${audio.src || index}-${currentPage}`} audio={audio} />
           ))}
         </div>
 
         <div className={styles.controls}>
           <div className={styles.pagination_container}>
-            <button 
-              className={styles.button} 
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-            >
+            <button className={styles.button} onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
               <ArrowLeftIcon style={{ width: '70px', height: '70px' }} />
             </button>
-            
+
             <span className={styles.pagination}>
               {currentPage}/{totalPages}
             </span>
-            
-            <button 
-              className={styles.button} 
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-            >
+
+            <button className={styles.button} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
               <ArrowRightIcon style={{ width: '70px', height: '70px' }} />
             </button>
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

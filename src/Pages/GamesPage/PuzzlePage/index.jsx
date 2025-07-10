@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib';
 import { puzzleData, difficultyLevels } from '../../../data/games.js';
@@ -13,7 +13,8 @@ import Footer from '../../../components/Footer/index.jsx';
 
 const PuzzlePage = () => {
   const navigate = useNavigate();
-  
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
   const [selectedPuzzle, setSelectedPuzzle] = useState(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
   const [gameStarted, setGameStarted] = useState(false);
@@ -25,6 +26,26 @@ const PuzzlePage = () => {
   const [showHint, setShowHint] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0); // Новое состояние для слайдера
   const { data } = useLanguage();
+
+   const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStartX.current || !touchStartY.current) return;
+    
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+    
+    const diffX = Math.abs(touchX - touchStartX.current);
+    const diffY = Math.abs(touchY - touchStartY.current);
+    
+    // Блокируем только горизонтальные свайпы
+    if (diffX > diffY && diffX > 10) {
+      e.preventDefault();
+    }
+  };
 
   // Функции для навигации по слайдеру
   const goToPrevSlide = () => {
@@ -204,7 +225,7 @@ const PuzzlePage = () => {
           {data.backToPuzzleSelection}
         </button>
 
-        <div className={styles.puzzleArea}>
+        <div className={styles.puzzleArea} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
           <div className={styles.hintPanel}>
             <button className={styles.hintToggle} onClick={() => setShowHint(!showHint)}>
               {showHint ? data.hideHint : data.showHint}
