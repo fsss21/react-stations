@@ -13,7 +13,7 @@ export const ru = {
       ],
       videos: [
         {
-          src: 'https://rutube.ru/video/816ed89f8a0e9d4effddc409b3d8022e/',
+          src: '/videos/matochkin-video1.mp4',
           title: 'Выставка «Маточкин Шар», посвященная истории первой советской научной полярной станции'
         }
       ],
@@ -44,8 +44,8 @@ export const ru = {
         { src: '../images/quiet4.jpg', title: 'quiet4' }
       ],
       videos: [
-        { src: 'https://yandex.ru/video/preview/7126297339974111330', title: 'Лекция Евгения Ермолова о полярной станции "Бухта Тихая"' },
-        { src: 'https://ya.ru/video/preview/8534154496514676721', title: 'Голоса бухты Тихая (2021)' }
+        { src: '/videos/quiet-video1.mp4', title: 'Лекция Евгения Ермолова о полярной станции "Бухта Тихая"' },
+        { src: '/videos/quiet-video2.mp4', title: 'Голоса бухты Тихая (2021)' }
       ],
       audios: [{ src: '../audios/Quiet-text1.mp3', title: '1 полярная станция «Бухта Тихая» (открыта в  1929г. – закрыта в 1959г.)' }]
     },
@@ -93,12 +93,11 @@ export const ru = {
         { src: '../images/chelush3.jpg', title: 'chelush3' },
         { src: '../images/chelush4.jpg', title: 'Мыс Челюскин' }
       ],
-      videos: [
-        { src: 'https://dzen.ru/video/watch/64dc5ee83051bc4d6f34bc56', title: 'Мыс Челюскин. Как зимуют полярники на станции в Арктике на самом краю земли? ' }
-      ],
-      audios: [{ src: '../audios/Cheluskin-text1.mp3', title: 'Полярная станция на мысе Челюскин' },
-               { src: '../audios/Cheluskin-text2.mp3', title: 'Назначение станции' },
-               { src: '../audios/Cheluskin-text3.mp3', title: 'Современное состояние' }
+      videos: [{ src: '/videos/chelush-video1.mp4', title: 'Мыс Челюскин. Как зимуют полярники на станции в Арктике на самом краю земли? ' }],
+      audios: [
+        { src: '../audios/Cheluskin-text1.mp3', title: 'Полярная станция на мысе Челюскин' },
+        { src: '../audios/Cheluskin-text2.mp3', title: 'Назначение станции' },
+        { src: '../audios/Cheluskin-text3.mp3', title: 'Современное состояние' }
       ]
     },
     {
@@ -112,7 +111,7 @@ export const ru = {
         { src: '../images/north4.jpg', title: 'north4' },
         { src: '../images/north5.jpg', title: 'north5' }
       ],
-      videos: [{ src: 'https://ya.ru/video/preview/3188984762223484347', title: 'Папанин и его команда на дрейфующей станции "Северный полюс-1"' }],
+      videos: [{ src: '/videos/north-video1.mp4', title: 'Папанин и его команда на дрейфующей станции "Северный полюс-1"' }],
       audios: [{ src: '../audios/North-text1.mp3', title: 'Полярная станция "Северный полюс-1"' }]
     },
     {
@@ -286,13 +285,13 @@ export const ru = {
   library: {
     films: [
       {
-        src: 'https://rutube.ru/video/816ed89f8a0e9d4effddc409b3d8022e/',
+        src: '/videos/matochkin-video1.mp4',
         title: 'Выставка «Маточкин Шар», посвященная истории первой советской научной полярной станции'
       },
-      { src: 'https://yandex.ru/video/preview/7126297339974111330', title: 'Лекция Евгения Ермолова о полярной станции "Бухта Тихая"' },
-      { src: 'https://ya.ru/video/preview/8534154496514676721', title: 'Голоса бухты Тихая (2021)' },
-      { src: 'https://dzen.ru/video/watch/64dc5ee83051bc4d6f34bc56', title: 'Мыс Челюскин. Как зимуют полярники на станции в Арктике на самом краю земли? ' },
-      { src: 'https://ya.ru/video/preview/3188984762223484347', title: 'Папанин и его команда на дрейфующей станции "Северный полюс-1"' }
+      { src: '/videos/quiet-video1.mp4', title: 'Лекция Евгения Ермолова о полярной станции "Бухта Тихая"' },
+      { src: '/videos/quiet-video2.mp4', title: 'Голоса бухты Тихая (2021)' },
+      { src: '/videos/chelush-video1.mp4', title: 'Мыс Челюскин. Как зимуют полярники на станции в Арктике на самом краю земли? ' },
+      { src: '/videos/north-video1.mp4', title: 'Папанин и его команда на дрейфующей станции "Северный полюс-1"' }
     ],
     audioBooks: [],
     lectures: [],
