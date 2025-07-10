@@ -267,12 +267,18 @@ const CrosswordPage = () => {
     }
   };
 
-  const basicKeyboardTheme = styles.keyboardTheme 
-  const enabledKeyboardTheme = isEnabled ? styles.enabledKeyboardTheme : '';
-  const basicKeyboardDefaultBtn = styles.keyboardDefaultBtn
-  const enabledKeyboardDefaultBtn = isEnabled ? styles.enabledKeyboardDefaultBtn : '';
-  const basicKeyboardDeleteBtn = styles.keyboardDeleteBtn 
-  const enabledKeyboardDeleteBtn  = isEnabled ? styles.enabledKeyboardDeleteBtn  : '';
+  const keyboardThemeClasses = [
+  styles.keyboardTheme,
+  isEnabled && styles.enabledKeyboardTheme
+  ].filter(Boolean).join(' ');
+  const keyboardDefaultBtnClasses = [
+  styles.keyboardDefaultBtn,
+  isEnabled && styles.enabledKeyboardDefaultBtn
+  ].filter(Boolean).join(' ');
+  const keyboardDeleteBtnClasses = [
+  styles.keyboardDeleteBtn,
+  isEnabled && styles.enabledKeyboardDeleteBtn
+  ].filter(Boolean).join(' ');
 
   return (
     <section className={styles.container}>
@@ -365,17 +371,17 @@ const CrosswordPage = () => {
                 display={{
                   '{bksp}': '⌫'
                 }}
-                buttonTheme={[
+                 buttonTheme={[
                   {
-                    class: `${basicKeyboardDefaultBtn} ${enabledKeyboardDefaultBtn}`,// Ваш класс для обычных кнопок
+                    class: keyboardDefaultBtnClasses || 'hg-button', // fallback класс
                     buttons: 'Й Ц У К Е Н Г Ш Щ З Х Ъ Ф Ы В А П Р О Л Д Ж Э Я Ч С М И Т Ь Б Ю'
                   },
                   {
-                    class: `${`${basicKeyboardDeleteBtn} ${enabledKeyboardDeleteBtn}`} hg-button hg-button-bksp`, // Добавлены обязательные классы
+                    class: `${keyboardDeleteBtnClasses} hg-button hg-button-bksp`,
                     buttons: '{bksp}'
                   }
                 ]}
-                theme={`hg-theme-default ${`${basicKeyboardTheme} ${enabledKeyboardTheme}`}`}
+                 theme={`hg-theme-default ${keyboardThemeClasses}`}
               />
             </div>
           )}

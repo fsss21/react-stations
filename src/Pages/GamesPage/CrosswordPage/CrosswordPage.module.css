@@ -52,7 +52,7 @@
     cursor: pointer;
     transition: all 0.2s;
     border: solid 1px #ccc;
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .cell.selected {
@@ -62,7 +62,6 @@
 
 .cell.solved {
     background-color: #e8f5e9;
-    color: #2e7d32;
 }
 
 .cell.empty {
