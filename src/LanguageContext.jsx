@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
-import { translations } from './data/data';
 
 const LanguageContext = createContext();
 
@@ -8,7 +7,30 @@ export const LanguageProvider = ({ children }) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    setData(translations[lang]);
+    Promise.all([
+      fetch('/data/ru.js')
+        .then((res) => res.text())
+        .then(eval),
+      fetch('/data/en.js')
+        .then((res) => res.text())
+        .then(eval),
+      fetch('/data/data.js')
+        .then((res) => res.text())
+        .then(eval),
+      fetch('/data/games.js')
+        .then((res) => res.text())
+        .then(eval)
+    ]).then(() => {
+      setData({
+        ...window.translations[lang],
+        operationStyles: window.operationStyles,
+        gamesData: window.gamesData,
+        puzzleData: window.puzzleData,
+        crosswordData: window.crosswordData,
+        difficultyLevels: window.difficultyLevels,
+        quizData: window.quizData
+      });
+    });
   }, [lang]);
 
   const toggleLang = () => setLang((prev) => (prev === 'ru' ? 'en' : 'ru'));

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { quizData } from '../../../data/games.js';
 
 import { useSelector } from 'react-redux';
 
@@ -8,6 +7,7 @@ import styles from './QuizPage.module.css';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
 import QuizModal from './QuizModal';
+import { useLanguage } from '../../../LanguageContext';
 
 const QuizPage = () => {
   const navigate = useNavigate();
@@ -20,6 +20,8 @@ const QuizPage = () => {
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [gameSeconds, setGameSeconds] = useState(0);
   const timerRef = useRef(null);
+  const { data = {} } = useLanguage();
+  const quizData = data.quizData;
 
   const currentQuestion = quizData[currentQuestionIndex];
 
@@ -44,20 +46,16 @@ const QuizPage = () => {
   };
 
   const checkAnswer = () => {
-    const correctAnswers = currentQuestion.answers
-      .filter((answer) => answer.correct)
-      .map((answer) => answer.id);
+    const correctAnswers = currentQuestion.answers.filter((answer) => answer.correct).map((answer) => answer.id);
 
-    const isAnswerCorrect = 
-      selectedAnswers.length === correctAnswers.length && 
-      selectedAnswers.every((answer) => correctAnswers.includes(answer));
+    const isAnswerCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every((answer) => correctAnswers.includes(answer));
 
     setIsCorrect(isAnswerCorrect);
     setShowModal(true);
 
     if (isAnswerCorrect) {
       setCorrectAnswersCount((prev) => prev + 1);
-      
+
       // Автоматический переход при правильном ответе через 3 секунды
       timerRef.current = setTimeout(() => {
         goToNextQuestion();
@@ -68,7 +66,7 @@ const QuizPage = () => {
   const handleRevealCorrectAnswer = () => {
     setShowModal(false);
     setShowCorrectAnswer(true);
-    
+
     // Автоматический переход после показа правильного ответа
     timerRef.current = setTimeout(() => {
       goToNextQuestion();
@@ -80,7 +78,7 @@ const QuizPage = () => {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
-    
+
     setSelectedAnswers([]);
     setShowModal(false);
     setShowCorrectAnswer(false);
@@ -124,7 +122,7 @@ const QuizPage = () => {
   return (
     <>
       <section className={styles.container}>
-        <GamesMenu correctAnswersCount={correctAnswersCount} totalQuestions={quizData.length}   />
+        <GamesMenu correctAnswersCount={correctAnswersCount} totalQuestions={quizData.length} />
         <div className={`${basicContent} ${enabledContent}`}>
           <div className={`${basicQuestion} ${enabledQuestion}`}>
             <span className={styles.number}>вопрос №{currentQuestion.id}</span>
@@ -144,7 +142,7 @@ const QuizPage = () => {
               const isSelected = selectedAnswers.includes(answer.id);
               const showAsCorrect = showCorrectAnswer && answer.correct;
               const showAsIncorrect = showCorrectAnswer && isSelected && !answer.correct;
-              
+
               return (
                 <button
                   key={answer.id}
@@ -199,14 +197,7 @@ const QuizPage = () => {
         <Footer />
       </section>
 
-      {showModal && (
-        <QuizModal 
-          isCorrect={isCorrect} 
-          onTryAgain={handleTryAgain} 
-          onRevealCorrectAnswer={handleRevealCorrectAnswer}
-          autoClose={isCorrect}
-        />
-      )}
+      {showModal && <QuizModal isCorrect={isCorrect} onTryAgain={handleTryAgain} onRevealCorrectAnswer={handleRevealCorrectAnswer} autoClose={isCorrect} />}
     </>
   );
 };

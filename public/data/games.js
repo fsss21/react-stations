@@ -1,4 +1,4 @@
-export const puzzleData = [
+window.puzzleData = [
   {
     id: 1,
     imageSrc: '/images/puzzle1.jpg',
@@ -106,7 +106,7 @@ export const puzzleData = [
 //   },
 ];
 
-export const difficultyLevels = [
+window.difficultyLevels = [
   {
     id: 'easy',
     name: 'Легкий',
@@ -130,7 +130,7 @@ export const difficultyLevels = [
   },
 ];
 
-export const crosswordData = {
+window.crosswordData = {
   size: 17,
   words: [
     {
@@ -216,7 +216,7 @@ export const crosswordData = {
   ],
 };
 
-export const quizData = [
+window.quizData = [
   {
     id: 1,
     question: 'Как назывался дирижабль, на котором весной 1928 года экспедиция подкомандованием Умберто Нобиле отправилась к Северному полюсу?',
@@ -337,7 +337,7 @@ export const quizData = [
   },
 ];
 
-export const gamesData = [
+window.gamesData = [
   {
     id: 1,
     name: 'Экспедиции',

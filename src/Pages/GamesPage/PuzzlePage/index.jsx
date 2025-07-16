@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib';
-import { puzzleData, difficultyLevels } from '../../../data/games.js';
 import { useLanguage } from '../../../LanguageContext.jsx';
 
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css';
@@ -19,28 +18,30 @@ const PuzzlePage = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
   const [gameStarted, setGameStarted] = useState(false);
   const [completedPuzzles, setCompletedPuzzles] = useState(0);
+  const { data = {} } = useLanguage();
+  const puzzleData = data.puzzleData;
+  const difficultyLevels = data.difficultyLevels;
   const [totalPuzzles, setTotalPuzzles] = useState(puzzleData.length);
   const [gameSeconds, setGameSeconds] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [currentPuzzleTime, setCurrentPuzzleTime] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0); // Новое состояние для слайдера
-  const { data } = useLanguage();
 
-   const handleTouchStart = (e) => {
+  const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e) => {
     if (!touchStartX.current || !touchStartY.current) return;
-    
+
     const touchX = e.touches[0].clientX;
     const touchY = e.touches[0].clientY;
-    
+
     const diffX = Math.abs(touchX - touchStartX.current);
     const diffY = Math.abs(touchY - touchStartY.current);
-    
+
     // Блокируем только горизонтальные свайпы
     if (diffX > diffY && diffX > 10) {
       e.preventDefault();
@@ -49,11 +50,11 @@ const PuzzlePage = () => {
 
   // Функции для навигации по слайдеру
   const goToPrevSlide = () => {
-    setCurrentSlide(prev => Math.max(0, prev - 1));
+    setCurrentSlide((prev) => Math.max(0, prev - 1));
   };
 
   const goToNextSlide = () => {
-    setCurrentSlide(prev => Math.min(Math.ceil(puzzleData.length / 3) - 1, prev + 1));
+    setCurrentSlide((prev) => Math.min(Math.ceil(puzzleData.length / 3) - 1, prev + 1));
   };
 
   // Вычисляем пазлы для текущего слайда
@@ -144,14 +145,10 @@ const PuzzlePage = () => {
         <GamesMenu hideStats={true} />
         <div className={styles.selectionContainer}>
           <div className={styles.sliderContainer}>
-            <button 
-              className={`${styles.sliderButton} ${isFirstSlide ? styles.disabled : ''}`} 
-              onClick={goToPrevSlide}
-              disabled={isFirstSlide}
-            >
+            <button className={`${styles.sliderButton} ${isFirstSlide ? styles.disabled : ''}`} onClick={goToPrevSlide} disabled={isFirstSlide}>
               <ArrowLeftIcon />
             </button>
-            
+
             <div className={styles.puzzles}>
               {visiblePuzzles.map((puzzle) => (
                 <div
@@ -164,16 +161,12 @@ const PuzzlePage = () => {
                 </div>
               ))}
             </div>
-            
-            <button 
-              className={`${styles.sliderButton} ${isLastSlide ? styles.disabled : ''}`} 
-              onClick={goToNextSlide}
-              disabled={isLastSlide}
-            >
+
+            <button className={`${styles.sliderButton} ${isLastSlide ? styles.disabled : ''}`} onClick={goToNextSlide} disabled={isLastSlide}>
               <ArrowRightIcon />
             </button>
           </div>
-          
+
           {/* <div className={styles.sliderDots}>
             {Array.from({ length: Math.ceil(puzzleData.length / 3) }).map((_, index) => (
               <span 
@@ -235,7 +228,7 @@ const PuzzlePage = () => {
           </div>
 
           <div className={styles.puzzleWrapper}>
-            <JigsawPuzzle  imageSrc={selectedPuzzle.imageSrc} rows={difficulty.rows} columns={difficulty.columns} onSolved={handlePuzzleComplete} />
+            <JigsawPuzzle imageSrc={selectedPuzzle.imageSrc} rows={difficulty.rows} columns={difficulty.columns} onSolved={handlePuzzleComplete} />
           </div>
         </div>
       </div>

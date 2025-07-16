@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useLanguage } from '../../LanguageContext';
-import { operationStyles } from '../../data/data';
 import React from 'react';
 
 const HistoricalPage = () => {
@@ -19,6 +18,7 @@ const HistoricalPage = () => {
   };
 
   console.log(data);
+  console.log(operations);
 
   return (
     <>
@@ -27,10 +27,9 @@ const HistoricalPage = () => {
         {isEnabled ? (
           <div className={styles.content}>
             <span className={styles.title}>{data.sectionHistoryTitle}</span>
-
             {operations.map?.((operation) => (
               <React.Fragment key={operation.id}>
-                <span className={styles.subTitle}>{operation.title}</span>
+                <span className={styles.subTitle} dangerouslySetInnerHTML={{ __html: operation.title }} />
                 <span className={styles.info} onClick={() => handleItemClick(operation.id)}>
                   {data.learnMore}
                 </span>
@@ -39,7 +38,7 @@ const HistoricalPage = () => {
           </div>
         ) : (
           operations.map((operation) => (
-            <div key={operation.id} className={styles.operation} style={operationStyles[operation.id]} onClick={() => handleItemClick(operation.id)} />
+            <div key={operation.id} className={styles.operation} style={data.operationStyles[operation.id]} onClick={() => handleItemClick(operation.id)} />
           ))
         )}
         <Footer />

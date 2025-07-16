@@ -1,9 +1,7 @@
-import { ru } from './ru';
-import { en } from './en';
-
-export const translations = {
+window.translations = window.translations || {};
+window.translations ={
   ru: {
-    ...ru,
+    ...window.translations.ru,
     accessibilityToggle: 'Версия для\nслабовидящих',
     accessibilityNormal: 'Обычная версия\nприложения',
     catalog: 'каталог\nэкспонатов',
@@ -54,7 +52,7 @@ export const translations = {
     startGame: 'Начать игру'
   },
   en: {
-    ...en,
+    ...window.translations.en,
     accessibilityToggle: 'Visually impaired\nversion',
     accessibilityNormal: 'Normal\nversion',
     catalog: 'catalog\nof exhibits',
@@ -106,7 +104,7 @@ export const translations = {
   }
 };
 
-export const operationStyles = {
+window.operationStyles  = {
   rudolf: {
     position: 'absolute',
     top: '15%',
