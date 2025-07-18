@@ -8,30 +8,24 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     Promise.all([
-      fetch('/data/ru.js')
-        .then((res) => res.text())
-        .then(eval),
-      fetch('/data/en.js')
-        .then((res) => res.text())
-        .then(eval),
-      fetch('/data/data.js')
-        .then((res) => res.text())
-        .then(eval),
-      fetch('/data/games.js')
-        .then((res) => res.text())
-        .then(eval)
-    ]).then(() => {
+      fetch('/data/ru.json').then((res) => res.json()),
+      fetch('/data/en.json').then((res) => res.json()),
+      fetch('/data/data.json').then((res) => res.json()),
+      fetch('/data/games.json').then((res) => res.json())
+    ]).then(([ru, en, dataCommon, gamesData]) => {
+      const translations = { ru, en };
       setData({
-        ...window.translations[lang],
-        operationStyles: window.operationStyles,
-        gamesData: window.gamesData,
-        puzzleData: window.puzzleData,
-        crosswordData: window.crosswordData,
-        difficultyLevels: window.difficultyLevels,
-        quizData: window.quizData
+        ...translations[lang],
+        ...dataCommon.translations[lang],
+        operationStyles: dataCommon.operationStyles,
+        puzzleData: gamesData.puzzleData,
+        crosswordData: gamesData.crosswordData,
+        difficultyLevels: gamesData.difficultyLevels,
+        quizData: gamesData.quizData
       });
     });
   }, [lang]);
+  console.log(data);
 
   const toggleLang = () => setLang((prev) => (prev === 'ru' ? 'en' : 'ru'));
 

@@ -44,14 +44,14 @@ const Menu = ({ data }) => {
         {isEnabled ? (
           <>
             <span className={styles.enableTitle}> {data.sectionHistoryTitle}</span>
-            <span className={styles.enableSubtitle}>{title}</span>
+            <span className={styles.enableSubtitle} dangerouslySetInnerHTML={{ __html: title }} />
           </>
         ) : (
           <>
             <span className={styles.title}> {data.sectionHistoryTitle}</span>
             <span className={styles.subtitle}>
               <PlayArrowIcon style={{ width: '70px', height: '70px' }} />
-              {title}
+              <span dangerouslySetInnerHTML={{ __html: title }} />
             </span>
           </>
         )}
