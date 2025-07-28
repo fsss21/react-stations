@@ -140,8 +140,8 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className={styles.modalTitle}>{events[selectedIndex].date}</span>
-            {events[selectedIndex].description}
+            <span className={styles.modalTitle} dangerouslySetInnerHTML={{ __html: events[selectedIndex].date }}></span>
+            <span dangerouslySetInnerHTML={{ __html: events[selectedIndex].description }}></span>
             <div onClick={() => setSelectedIndex(null)} className={styles.closeButton}>
               <img src="/images/close.svg" alt="Закрыть" />
             </div>

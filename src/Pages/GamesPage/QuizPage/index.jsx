@@ -127,7 +127,7 @@ const QuizPage = () => {
           <div className={`${basicQuestion} ${enabledQuestion}`}>
             <span className={styles.number}>вопрос №{currentQuestion.id}</span>
             <span className={styles.text}>
-              {currentQuestion.question}
+              <span dangerouslySetInnerHTML={{ __html: currentQuestion.question }}></span>
               <br />
               <span className={styles.info}>{currentQuestion?.info}</span>
             </span>

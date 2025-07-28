@@ -75,7 +75,7 @@ const Menu = ({ data }) => {
             {data.tabAudio}
           </button>
         </div>
-        <div className={styles.textSection}>{text}</div>
+        <div className={styles.textSection} dangerouslySetInnerHTML={{ __html: text }}></div>
       </div>
 
       {renderContent()}

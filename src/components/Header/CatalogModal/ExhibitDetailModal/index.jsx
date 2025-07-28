@@ -74,16 +74,16 @@ const ExhibitDetailModal = ({ exhibit, onClose, onBackToCatalog }) => {
             <h2 className={styles.exhibitTitle}>{exhibit.name}</h2>
             <div className={styles.details}>
               <p>
-                <strong>Дата:</strong> {exhibit.date}
+                <strong >Дата:</strong> <span dangerouslySetInnerHTML={{ __html: exhibit.name}}></span>
               </p>
               <p>
-                <strong>Материал:</strong> {exhibit.material}
+                <strong>Материал:</strong> <span dangerouslySetInnerHTML={{ __html: exhibit.material}}></span>
               </p>
               <p>
-                <strong>Размеры:</strong> {exhibit.size}
+                <strong>Размеры:</strong> <span dangerouslySetInnerHTML={{ __html: exhibit.size}}></span>
               </p>
             </div>
-            <div className={styles.description}>{exhibit.description}</div>
+            <div className={styles.description} dangerouslySetInnerHTML={{ __html: exhibit.description}}></div>
           </div>
           <div className={styles.imageSection}>
             <img src={exhibit.images[currentImageIndex]} alt={exhibit.name} onClick={() => setIsFullscreen(true)} className={styles.mainImage} />

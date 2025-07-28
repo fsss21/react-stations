@@ -56,7 +56,7 @@ const CatalogModal = ({ onClose, onSelectExhibit }) => {
                 <img src={exhibit.images?.[0]} alt={exhibit.name} className={styles.thumbnail} />
                 {/* Отдельный блок для названия с собственным классом */}
                 <div className={styles.exhibitNameContainer}>
-                  <span className={styles.exhibitName}>{exhibit.name}</span>
+                  <span className={styles.exhibitName} dangerouslySetInnerHTML={{ __html: exhibit.name}}></span>
                 </div>
               </div>
             ))}

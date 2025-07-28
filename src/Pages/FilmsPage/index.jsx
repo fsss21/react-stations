@@ -51,7 +51,7 @@ const FilmsPage = () => {
   return (
     <section className={styles.container}>
       <Header />
-      <span className={styles.mainTitle}>{data.mediaTitle}</span>
+      <span className={styles.mainTitle} dangerouslySetInnerHTML={{ __html: data.mediaTitle }}></span>
 
       <div className={styles.tabsMenu}>
         <button

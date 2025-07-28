@@ -28,7 +28,7 @@ const Gallery = ({ images }) => {
             {currentImages.map((img, index) => (
                 <div key={index} className={styles.galleryItem}>
                     <img className={styles.galleryImage} src={img.src} alt={img.title} />
-                    <p className={styles.galleryTitle}>{img.title}</p>
+                    <p className={styles.galleryTitle} dangerouslySetInnerHTML={{ __html: img.name }}></p>
                 </div>
             ))}
 

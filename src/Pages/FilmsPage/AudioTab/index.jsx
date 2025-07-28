@@ -31,7 +31,7 @@ const AudioPlayer = ({ item }) => {
                 <span className={`${baseClass} ${enabledClass}`} onClick={togglePlay}></span>
             </div>
             <div className={styles.mediaInfo}>
-                <span className={styles.mediaTitle}>{item.title}</span>
+                <span className={styles.mediaTitle} dangerouslySetInnerHTML={{ __html: item.title }}></span>
             </div>
         </section>
     );

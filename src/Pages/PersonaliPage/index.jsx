@@ -78,7 +78,7 @@ const PersonaliPage = () => {
               <div key={person.id} className={styles.imageCard}>
                 <img onClick={() => navigate(`/personali/${person.id}`)} src={person.mainImage.src} alt={person.mainImage.title} className={styles.image} />
                 <div className={styles.imageInfo}>
-                  <span style={{ fontWeight: 'normal' }}>{person.title}</span>
+                  <span dangerouslySetInnerHTML={{ __html: person.title }}></span>
                   <p>{person.date}</p>
                   {/* <p style={{ fontSize: '14px' }}>{person.mainImage.title}</p> */}
                 </div>

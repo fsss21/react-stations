@@ -29,7 +29,7 @@ const MenuPhoto = ({ images = [] }) => {
         <img className={styles.imageFullscreen} src={images[currentPhoto - 1]?.src} alt="Fullscreen" />
       </ImageModal>
       <div className={styles.content}>
-        <span className={styles.title}>{images[currentPhoto - 1]?.title || 'Название фото'}</span>
+        <span className={styles.title} dangerouslySetInnerHTML={{ __html: images[currentPhoto - 1]?.title }}></span>
         <img className={styles.img} src={images[currentPhoto - 1]?.src} alt="MenuPhoto" />
         <div className={styles.controls}>
           <div className={styles.paginationContainer}>

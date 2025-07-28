@@ -46,7 +46,7 @@ const FilmsTab = ({ items }) => {
                             <video loop playsInline controls src={item.src} className={styles.mediaContent} preload="none" />
                         </div>
                         <div className={styles.mediaInfo}>
-                            <span className={styles.mediaTitle}>{item.title}</span>
+                            <span className={styles.mediaTitle} dangerouslySetInnerHTML={{ __html: item.title }}></span>
                         </div>
                     </div>
                 ))}

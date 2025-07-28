@@ -33,7 +33,7 @@ const Quote = ({ quotes = [], images }) => {
         {arrQuotes.map((quote, index) => (
           <div key={index} className={styles.quoteItem}>
             <FormatQuoteIcon style={{ color: 'rgba(76, 96, 103, 1)', fontSize: '60px' }} />
-            <span className={styles.title}>{quote}</span>
+            <span className={styles.title} dangerouslySetInnerHTML={{ __html: quote }}></span>
           </div>
         ))}
       </div>

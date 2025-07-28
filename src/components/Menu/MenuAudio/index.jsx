@@ -70,7 +70,7 @@ const MenuAudio = ({ audios = [] }) => {
             ${isPlaying ? styles.playing : ''}`}
           onClick={() => handleAudioToggle(audio)}
         />
-        <p className={styles.title}>{audio.title || 'Название Аудио'}</p>
+        <p className={styles.title} dangerouslySetInnerHTML={{ __html: audio.title }}></p>
       </div>
     );
   };

@@ -29,8 +29,7 @@ const Biography = ({ data, images }) => {
     <>
       <section className={styles.container}>
         <div className={styles.containerTime}>
-          <p className={styles.title}>{data.title}</p>
-          <p className={styles.content}>{data.content}</p>
+          <p className={styles.title} dangerouslySetInnerHTML={{ __html: data.title }}></p>
           <SnakeTimeline events={data.awards} />
         </div>
         <div className={styles.galleryGrid}>

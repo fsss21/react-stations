@@ -33,7 +33,7 @@ const BooksTab = ({ items }) => {
                             <img src={item.src} alt={item.title} className={styles.mediaContent} loading="lazy" />
                         </div>
                         <div className={styles.mediaInfo}>
-                            <span className={styles.mediaTitle}>{item.title}</span>
+                            <span className={styles.mediaTitle} dangerouslySetInnerHTML={{ __html: item.title }}></span>
                         </div>
                     </div>
                 ))}
