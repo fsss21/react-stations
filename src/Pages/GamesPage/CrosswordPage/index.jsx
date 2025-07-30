@@ -52,23 +52,28 @@ const CrosswordPage = () => {
             value: '',
             clueIds: [],
             solved: false,
-            revealed: false
+            revealed: false,
+            clueNumbers: [] // Добавляем массив для номеров
           }))
       );
 
     crosswordWords.forEach((word) => {
       const { start, direction, word: text, id } = word;
       let { row, col } = start;
-      const clueNumber = clueNumberMap[id]; // Получаем номер
+      const clueNumber = clueNumberMap[id];
 
       for (let i = 0; i < text.length; i++) {
         if (row < crosswordData.size && col < crosswordData.size) {
+          // Добавляем номер только для первой буквы слова
+          const addNumber = i === 0;
+          
           newGrid[row][col] = {
             ...newGrid[row][col],
             value: text[i].toUpperCase(),
             clueIds: [...newGrid[row][col].clueIds, id],
-            // Добавляем номер только для первой буквы слова
-            ...(i === 0 && { clueNumber })
+            clueNumbers: addNumber 
+              ? [...newGrid[row][col].clueNumbers, clueNumber] 
+              : newGrid[row][col].clueNumbers
           };
         }
 
@@ -78,7 +83,7 @@ const CrosswordPage = () => {
     });
 
     return newGrid;
-  }, [crosswordData.size, crosswordWords, clueNumberMap]);
+}, [crosswordData.size, crosswordWords, clueNumberMap]);
 
   useEffect(() => {
     setGrid(initializeGrid());
@@ -277,30 +282,49 @@ const CrosswordPage = () => {
       <GamesMenu activeGame="кроссворд" solvedCrosswords={solvedCount} totalCrosswords={10} />
 
       <div className={styles.crosswordContainer}>
-        <div className={styles.grid}>
-          {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className={styles.row}>
-              {row.map((cell, colIndex) => {
-                if (!cell) return null;
+        <div className={styles.gridContainer}>
+          <div className={styles.grid}>
+            {grid.map((row, rowIndex) => (
+              <div key={rowIndex} className={styles.row}>
+                {row.map((cell, colIndex) => {
+                  if (!cell) return null;
+                  
+                  const isEmpty = !cell.value;
+                  const isSelected = selectedClue && cell.clueIds.includes(selectedClue.id);
+                  const isSolved = cell.solved;
+                  const isRevealed = cell.revealed;
 
-                const isEmpty = !cell.value;
-                const isSelected = selectedClue && cell.clueIds.includes(selectedClue.id);
-                const isSolved = cell.solved;
-                const isRevealed = cell.revealed;
-
-                return (
-                  <div
-                    key={`${rowIndex}-${colIndex}`}
-                    className={`${styles.cell} ${isEmpty ? styles.empty : ''} ${isSelected ? styles.selected : ''} ${isSolved ? styles.solved : ''}`}
-                    onClick={() => !allRevealed && handleCellClick(rowIndex, colIndex)}
-                  >
-                    {!isEmpty && !isSolved && !isRevealed && cell.clueNumber && <span className={styles.cellNumber}>{cell.clueNumber}</span>}
-                    {(isSolved || isRevealed) && cell.value}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
+                  return (
+                    <div
+                      key={`${rowIndex}-${colIndex}`}
+                      className={`${styles.cell} ${isEmpty ? styles.empty : ''} ${isSelected ? styles.selected : ''} ${isSolved ? styles.solved : ''}`}
+                      onClick={() => !allRevealed && handleCellClick(rowIndex, colIndex)}
+                    >
+                      {/* Рендерим номера раздельно с разным позиционированием */}
+                      {cell.clueNumbers && cell.clueNumbers.length === 1 && (
+                        <span className={styles.cellNumber} style={{ left: 2 }}>
+                          {cell.clueNumbers[0]}
+                        </span>
+                      )}
+                      
+                      {cell.clueNumbers && cell.clueNumbers.length > 1 && (
+                        <>
+                          <span className={styles.cellNumber} style={{ left: 2, top: 15 }}>
+                            {cell.clueNumbers[0]}
+                          </span>
+                          <span className={styles.cellNumber} style={{ right: 2, top: 2 }}>
+                            {cell.clueNumbers[1]}
+                          </span>
+                        </>
+                      )}
+                      
+                      {(isSolved || isRevealed) && cell.value}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={styles.controls}>
