@@ -20,7 +20,10 @@
 .content{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     position: absolute;
+    height: 500px;
     gap: 25px;
     top: 20%;
     left: 6%;
