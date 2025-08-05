@@ -232,3 +232,14 @@
     font-size: 18px;
     color: #666;
 }
+.mediaGrid.twoItems {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.mediaGrid.twoItems .mediaCard {
+    flex: 0 1 calc(50% - 20px); /* Ширина 50% минус отступ */
+    max-width: 400px; /* Фиксированная максимальная ширина */
+}
