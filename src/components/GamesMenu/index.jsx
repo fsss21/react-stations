@@ -82,7 +82,7 @@ const GamesMenu = ({
   const getAnswersText = () => {
     switch (activeGame) {
       case 'пазлы':
-        return `${currentPieces}/${totalPieces} ${data.puzzlesProgress}`;
+        return totalPieces > 0 ? `${currentPieces}/${totalPieces} ${data.puzzlesProgress}` : data.selectGame;
       case 'кроссворд':
         return `${data.crosswordProgress} ${solvedCrosswords}/${totalCrosswords}`;
       case 'викторина':
@@ -97,48 +97,49 @@ const GamesMenu = ({
   const basicTimer = styles.timer;
   const enabledTimer = isEnabled ? styles.timer_enabled : '';
 
-  return (<>
-    <Header />
-    <div className={styles.container}>
-      <div className={styles.buttons}>
-        <button
-          className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'пазлы' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
-          onClick={handlePuzzleClick} // Обработчик для пазлов
-        >
-          {data.tabPuzzles}
-        </button>
-        <button
-          className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'кроссворд' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
-          onClick={handleCrosswordClick} // Обработчик для кроссворда
-        >
-          {data.tabCrossword}
-        </button>
-        <button
-          className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'викторина' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
-          onClick={handleQuizClick} // Обработчик для викторины
-        >
-          {data.tabQuiz}
-        </button>
-      </div>
+  return (
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.buttons}>
+          <button
+            className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'пазлы' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={handlePuzzleClick} // Обработчик для пазлов
+          >
+            {data.tabPuzzles}
+          </button>
+          <button
+            className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'кроссворд' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={handleCrosswordClick} // Обработчик для кроссворда
+          >
+            {data.tabCrossword}
+          </button>
+          <button
+            className={`${`${basicClass} ${enabledClass}`} ${activeGame === 'викторина' ? (isEnabled ? styles.enabledActive : styles.active) : ''}`}
+            onClick={handleQuizClick} // Обработчик для викторины
+          >
+            {data.tabQuiz}
+          </button>
+        </div>
 
-      <div className={`${styles.timer} ${isEnabled ? enabledTimer : basicTimer}`}>
-        {!hideStats && (
-          <>
-            {isEnabled ? (
-              <>
-              <span className={styles.answersEnabled}>{getAnswersText()}</span>
-              <span className={styles.timeEnabled}>{formatTime(seconds)}</span>
-              </>
-            ) : (
-              <>
-              <span className={styles.answers}>{getAnswersText()}</span>
-              <span className={styles.time}>{formatTime(seconds)}</span>
-              </>
-            )}
-          </>
-        )}
+        <div className={`${styles.timer} ${isEnabled ? enabledTimer : basicTimer}`}>
+          {!hideStats && (
+            <>
+              {isEnabled ? (
+                <>
+                  <span className={styles.answersEnabled}>{getAnswersText()}</span>
+                  <span className={styles.timeEnabled}>{formatTime(seconds)}</span>
+                </>
+              ) : (
+                <>
+                  <span className={styles.answers}>{getAnswersText()}</span>
+                  <span className={styles.time}>{formatTime(seconds)}</span>
+                </>
+              )}
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };

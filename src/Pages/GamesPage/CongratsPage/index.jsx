@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 const CongratsPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { game, total, score, time } = location.state || {};
+    // Добавляем получение категории из состояния
+    const { game, total, score, time, category } = location.state || {};
     const { isEnabled } = useSelector((state) => state.accessibility);
 
     const gamePaths = {
@@ -16,12 +17,25 @@ const CongratsPage = () => {
         викторина: '/quiz',
     };
 
+    // Обновленная функция для текста поздравления
     const getCongratsText = () => {
         switch(game) {
             case 'пазлы':
                 return 'Поздравляем! вы собрали пазл';
             case 'викторина':
-                return <>Поздравляем! вы ответили <br /> верно на все вопросы</>;
+                // Разные тексты в зависимости от категории
+                switch(category) {
+                    case 'excellent':
+                        return <>Поздравляем! Вы ответили верно на все вопросы!<br />Идеальный результат!</>;
+                    case 'good':
+                        return <>Поздравляем! Вы отлично справились!<br />Правильных ответов: {score} из {total}</>;
+                    case 'medium':
+                        return <>Поздравляем! Хороший результат!<br />Правильных ответов: {score} из {total}</>;
+                    case 'basic':
+                        return <>Поздравляем! Викторина пройдена!<br />Правильных ответов: {score} из {total}</>;
+                    default:
+                        return <>Поздравляем! Вы завершили викторину!<br />Правильных ответов: {score} из {total}</>;
+                }
             case 'кроссворд':
             default:
                 return <>Поздравляем! вы разгадали <br /> кроссворд</>;
@@ -29,7 +43,14 @@ const CongratsPage = () => {
     };
 
     const handleGetCertificate = () => {
-        navigate('/certificate-form', { state: { game, score, time } });
+        navigate('/certificate-form', { 
+            state: { 
+                game, 
+                score, 
+                time,
+                category // передаем категорию для сертификата
+            } 
+        });
     };
 
     const handlePlayAgain = () => {
@@ -40,7 +61,6 @@ const CongratsPage = () => {
     const enabledClass = isEnabled ? styles.button_enabled : '';
     const basicContent = styles.content;
     const enabledContent = isEnabled ? styles.content_enabled : '';
-
     return (
         <section className={styles.container}>
             <GamesMenu 

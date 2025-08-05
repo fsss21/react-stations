@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useSelector } from 'react-redux';
@@ -21,7 +21,11 @@ const QuizPage = () => {
   const [gameSeconds, setGameSeconds] = useState(0);
   const timerRef = useRef(null);
   const { data = {} } = useLanguage();
-  const quizData = data.quizData;
+  const quizData = data.quizData || [];
+  const correctAnswersRef = useRef(0);
+  const totalQuestionsRef = useRef(quizData.length);
+  
+  correctAnswersRef.current = correctAnswersCount;
 
   const currentQuestion = quizData[currentQuestionIndex];
 
@@ -54,7 +58,13 @@ const QuizPage = () => {
     setShowModal(true);
 
     if (isAnswerCorrect) {
-      setCorrectAnswersCount((prev) => prev + 1);
+      // Используем функциональное обновление для получения актуального значения
+      setCorrectAnswersCount(prev => {
+        const newCount = prev + 1;
+        // Сохраняем новое значение в ref
+        correctAnswersRef.current = newCount;
+        return newCount;
+      });
 
       // Автоматический переход при правильном ответе через 3 секунды
       timerRef.current = setTimeout(() => {
@@ -73,7 +83,17 @@ const QuizPage = () => {
     }, 2000);
   };
 
-  const goToNextQuestion = () => {
+  const getResultCategory = (correct, total) => {
+    const percentage = Math.round((correct / total) * 100);
+    
+    if (percentage === 100) return 'excellent';
+    if (percentage >= 75) return 'good';
+    if (percentage >= 50) return 'medium';
+    if (percentage >= 25) return 'basic';
+    return 'beginner';
+  };
+
+   const goToNextQuestion = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
@@ -86,16 +106,26 @@ const QuizPage = () => {
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      // Используем ref для получения актуальных значений
+      const finalCorrectCount = correctAnswersRef.current;
+      const totalQuestions = totalQuestionsRef.current;
+      
+      const category = getResultCategory(
+        finalCorrectCount, 
+        totalQuestions
+      );
+
       navigate('/congrats', {
         state: {
           game: 'викторина',
-          score: correctAnswersCount,
-          total: quizData.length,
-          time: gameSeconds
+          score: finalCorrectCount,
+          total: totalQuestions,
+          time: gameSeconds,
+          category: category
         }
       });
     }
-  };
+  }, [currentQuestionIndex, quizData.length, navigate, gameSeconds]);
 
   const handleTryAgain = () => {
     if (timerRef.current) {
@@ -109,7 +139,7 @@ const QuizPage = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setGameSeconds((prev) => prev + 1);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, []);
@@ -122,7 +152,7 @@ const QuizPage = () => {
   return (
     <>
       <section className={styles.container}>
-        <GamesMenu correctAnswersCount={correctAnswersCount} totalQuestions={quizData.length} />
+        <GamesMenu correctAnswersCount={correctAnswersRef.current}  totalQuestions={quizData.length} />
         <div className={`${basicContent} ${enabledContent}`}>
           <div className={`${basicQuestion} ${enabledQuestion}`}>
             <span className={styles.number}>вопрос №{currentQuestion.id}</span>

@@ -282,11 +282,9 @@
   top: 2px;
   font-size: 10px;
   font-weight: bold;
-  
   padding: 0 3px;
   border-radius: 3px;
   line-height: 1.3;
- 
   pointer-events: none;
 }
 

@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './SnakeTimeline.module.css';
 
@@ -42,13 +42,11 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
   const getEventPosition = (index) => {
     const row = Math.floor(index / columns);
     const isEvenRow = row % 2 === 0;
-    const col = isEvenRow 
-      ? index % columns 
-      : columns - 1 - (index % columns);
-    
+    const col = isEvenRow ? index % columns : columns - 1 - (index % columns);
+
     const x = xOffset + col * columnGap;
     const y = yOffset + row * rowGap;
-    
+
     return { x, y, row, col };
   };
 
@@ -56,17 +54,17 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
   let d = '';
   for (let i = 0; i < events.length; i++) {
     const { x, y } = getEventPosition(i);
-    
+
     if (i === 0) {
       d += `M ${x} ${y} `;
     } else {
       const prev = getEventPosition(i - 1);
-      
+
       // Если переходим на новую строку
       if (prev.row !== getEventPosition(i).row) {
         const dir = prev.row % 2 === 0 ? 1 : -1;
         const curveX = prev.x + dir * curveR;
-        
+
         d += `L ${curveX} ${prev.y} `;
         d += `A ${curveR} ${curveR} 0 0 ${dir > 0 ? 1 : 0} ${curveX} ${y} `;
         d += `L ${x} ${y} `;
@@ -78,10 +76,8 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
 
   return (
     <div style={{ position: 'relative', width, height: height + 100 }}>
-      <p className={styles.text}>
-        Прикоснитесь к точке на тайм-лайне, чтобы узнать подробнее
-      </p>
-      
+      <p className={styles.text}>Прикоснитесь к точке на тайм-лайне, чтобы узнать подробнее</p>
+
       <svg width={width} height={height}>
         <defs>
           <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -94,36 +90,15 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
           </filter>
         </defs>
 
-        <path 
-          d={d} 
-          stroke="#284146" 
-          fill="none" 
-          strokeWidth={2} 
-          strokeDasharray={dash} 
-          strokeLinecap="round" 
-        />
+        <path d={d} stroke="#284146" fill="none" strokeWidth={2} strokeDasharray={dash} strokeLinecap="round" />
 
         {events.map((evt, i) => {
           const { x, y } = getEventPosition(i);
-          
+
           return (
             <g key={i} style={{ cursor: 'pointer' }} onClick={() => handleClick(i)}>
-              <circle 
-                cx={x} 
-                cy={y} 
-                r={dotRadius} 
-                fill="#A10F0F" 
-                stroke="#fff" 
-                strokeWidth={10} 
-                filter="url(#dropShadow)" 
-              />
-              <text 
-                x={x} 
-                y={y + dotRadius + 50} 
-                textAnchor="middle" 
-                fontSize={38} 
-                fill="#A10F0F"
-              >
+              <circle cx={x} cy={y} r={dotRadius} fill="#A10F0F" stroke="#fff" strokeWidth={10} filter="url(#dropShadow)" />
+              <text x={x} y={y + dotRadius + 50} textAnchor="middle" fontSize={38} fill="#A10F0F">
                 {evt.date}
               </text>
             </g>
@@ -132,15 +107,9 @@ const SnakeTimeline = ({ events = [], columns = 3, rowGap = 200, columnGap = 300
       </svg>
 
       {selectedIndex !== null && (
-        <div
-          className={styles.modal}
-          onClick={() => setSelectedIndex(null)}
-        >
-          <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className={styles.modalTitle} dangerouslySetInnerHTML={{ __html: events[selectedIndex].date }}></span>
+        <div className={styles.modal} onClick={() => setSelectedIndex(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalTitle} dangerouslySetInnerHTML={{ __html: events[selectedIndex].date }}></div>
             <span dangerouslySetInnerHTML={{ __html: events[selectedIndex].description }}></span>
             <div onClick={() => setSelectedIndex(null)} className={styles.closeButton}>
               <img src="/images/close.svg" alt="Закрыть" />

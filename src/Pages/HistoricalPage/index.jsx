@@ -17,8 +17,6 @@ const HistoricalPage = () => {
     navigate(`/history-item/${id}`);
   };
 
-  console.log('data', data);
-  console.log('operations', operations);
 
   return (
     <>

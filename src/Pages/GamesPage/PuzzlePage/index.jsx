@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib';
 import { useLanguage } from '../../../LanguageContext.jsx';
-
-import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css';
+import CustomPuzzle from './CustomPuzzle';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft'; // Добавлена новая иконка
 import styles from './PuzzlePage.module.css';
@@ -27,6 +25,8 @@ const PuzzlePage = () => {
   const [currentPuzzleTime, setCurrentPuzzleTime] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0); // Новое состояние для слайдера
+  const [currentCorrectPieces, setCurrentCorrectPieces] = useState(0);
+  const [currentTotalPieces, setCurrentTotalPieces] = useState(0);
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -75,6 +75,8 @@ const PuzzlePage = () => {
       setTimerActive(true);
       setCurrentPuzzleTime(0);
       setShowHint(false);
+      setCurrentCorrectPieces(0);
+      setCurrentTotalPieces(getCurrentPuzzlePieces());
     }
   };
 
@@ -95,9 +97,16 @@ const PuzzlePage = () => {
     const updatedPuzzleData = puzzleData.map((puzzle) => (puzzle.id === selectedPuzzle.id ? { ...puzzle, completed: true } : puzzle));
   };
 
+  const handlePuzzleProgress = (correctPieces, totalPieces) => {
+    setCurrentCorrectPieces(correctPieces);
+    setCurrentTotalPieces(totalPieces);
+  };
+
   const handleBackToSelection = () => {
     setGameStarted(false);
     setTimerActive(false);
+    setCurrentCorrectPieces(0);
+    setCurrentTotalPieces(0);
   };
 
   // Таймер
@@ -211,7 +220,13 @@ const PuzzlePage = () => {
 
   return (
     <section className={styles.container}>
-      <GamesMenu completedPuzzles={completedPuzzles} totalPuzzles={totalPuzzles} initialSeconds={gameSeconds} puzzlePieces={puzzlePieces} />
+      <GamesMenu
+        completedPuzzles={completedPuzzles}
+        totalPuzzles={totalPuzzles}
+        initialSeconds={gameSeconds}
+        currentPieces={currentCorrectPieces}
+        totalPieces={currentTotalPieces}
+      />
 
       <div className={styles.gameContainer}>
         <button className={styles.backButton} onClick={handleBackToSelection}>
@@ -227,9 +242,13 @@ const PuzzlePage = () => {
             {showHint && <img src={selectedPuzzle.imageSrc} alt={data.hintImageAlt} className={styles.hintImage} />}
           </div>
 
-          <div className={styles.puzzleWrapper}>
-            <JigsawPuzzle imageSrc={selectedPuzzle.imageSrc} rows={difficulty.rows} columns={difficulty.columns} onSolved={handlePuzzleComplete} />
-          </div>
+          <CustomPuzzle
+            imageSrc={selectedPuzzle.imageSrc}
+            rows={difficulty.rows}
+            columns={difficulty.columns}
+            onSolved={handlePuzzleComplete}
+            onProgressChange={handlePuzzleProgress}
+          />
         </div>
       </div>
 
