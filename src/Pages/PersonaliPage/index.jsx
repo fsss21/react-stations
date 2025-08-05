@@ -24,7 +24,7 @@ const PersonaliPage = () => {
 
   useEffect(() => {
     const loadPersons = () => {
-      const persons = data[currentCategory]
+      const persons = data?.[currentCategory]
         .map((person) => ({
           ...person,
           // Берем только первую фотографию из галереи
