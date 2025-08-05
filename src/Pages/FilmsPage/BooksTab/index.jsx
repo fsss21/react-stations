@@ -26,14 +26,27 @@ const BooksTab = ({ items }) => {
 
     return (
         <>
-            <section className={styles.mediaGrid}>
+            {/* Добавляем класс для контейнера при двух элементах */}
+            <section 
+                className={`${styles.mediaGrid} ${
+                    visibleItems.length === 2 ? styles.twoItems : ''
+                }`}
+            >
                 {visibleItems.map((item, index) => (
                     <div key={`book-${index}-${currentPage}`} className={styles.mediaCard}>
                         <div className={styles.imageWrapper}>
-                            <img src={item.src} alt={item.title} className={styles.mediaContent} loading="lazy" />
+                            <img 
+                                src={item.src} 
+                                alt={item.title} 
+                                className={styles.mediaContent} 
+                                loading="lazy" 
+                            />
                         </div>
                         <div className={styles.mediaInfo}>
-                            <span className={styles.mediaTitle} dangerouslySetInnerHTML={{ __html: item.title }}></span>
+                            <span 
+                                className={styles.mediaTitle} 
+                                dangerouslySetInnerHTML={{ __html: item.title }}
+                            ></span>
                         </div>
                     </div>
                 ))}
@@ -42,7 +55,11 @@ const BooksTab = ({ items }) => {
             {totalPages > 1 && (
                 <div className={styles.controls}>
                     <div className={styles.pagination_container}>
-                        <button className={styles.button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                        <button 
+                            className={styles.button} 
+                            onClick={() => handlePageChange(currentPage - 1)} 
+                            disabled={currentPage === 1}
+                        >
                             <ArrowLeftIcon style={{ width: '70px', height: '70px' }} />
                         </button>
 
@@ -50,7 +67,11 @@ const BooksTab = ({ items }) => {
                             {currentPage}/{totalPages}
                         </span>
 
-                        <button className={styles.button} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                        <button 
+                            className={styles.button} 
+                            onClick={() => handlePageChange(currentPage + 1)} 
+                            disabled={currentPage === totalPages}
+                        >
                             <ArrowRightIcon style={{ width: '70px', height: '70px' }} />
                         </button>
                     </div>
