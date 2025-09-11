@@ -40,9 +40,9 @@ const FilmsPage = () => {
       case TABS.AUDIOBOOKS:
         return <AudioTab items={data.library.audioBooks} typeName="Аудиокниг" />;
       case TABS.LECTURES:
-        return <FilmsTab items={data.library.lectures} />;
+        return <FilmsTab items={data.library.lectures} typeName="Лекций" />;
       case TABS.BOOKS:
-        return <BooksTab items={data.library.books} />;
+        return <BooksTab items={data.library.books} typeName="Книг" />;
       default:
         return null;
     }

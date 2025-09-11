@@ -454,7 +454,16 @@
       }
     ],
     "audioBooks": [],
-    "lectures": [],
+    "lectures": [
+     {
+       "src": "/audios/lectures-north-pole1-part1.mp3",
+       "title": "«Дрейфующая станция «Северный полюс-1». <br/> Часть 1"
+     },
+     {
+       "src": "/audios/lectures-north-pole1-part2.mp3",
+       "title": "«Дрейфующая станция «Северный полюс-1». <br/> Часть 2"
+     }
+  ],
     "books": []
   },
   "exhibitsData": [

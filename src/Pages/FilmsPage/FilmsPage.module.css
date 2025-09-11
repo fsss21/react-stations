@@ -134,6 +134,11 @@
     overflow: hidden;
 }
 
+.audioElement {
+     width: 150px;
+    height: 150px;
+}
+
 .audioPlaceholder {
     display: flex;
     align-items: center;
