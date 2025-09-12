@@ -1,12 +1,41 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 import GamesMenu from '../../../components/GamesMenu/index.jsx';
 import Footer from '../../../components/Footer/index.jsx';
 import styles from './CertificateFormPage.module.css';
-
+import { sendCertificate } from '../../../config/emailjs';
 import { useSelector } from 'react-redux';
+
+const CertificateTemplate = ({ name }) => (
+  <div
+    id="certificate-template"
+    style={{
+      position: 'absolute',
+      left: '-9999px',
+      top: '-9999px',
+      width: '794px', // A4 width in pixels
+      height: '1123px', // A4 height in pixels
+      backgroundImage: 'url(/certificate-template.jpg)', // Путь к вашему шаблону
+      backgroundSize: 'cover',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'Times New Roman, serif'
+    }}>
+    <div
+      style={{
+        textAlign: 'center',
+        marginTop: '200px',
+        fontSize: '48px',
+        fontWeight: 'bold',
+        color: '#1a237e'
+      }}>
+      {name}
+    </div>
+  </div>
+);
 
 const CertificateFormPage = () => {
   const { isEnabled } = useSelector((state) => state.accessibility);
@@ -16,6 +45,7 @@ const CertificateFormPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [activeInput, setActiveInput] = useState(null);
+
   const [keyboardState, setKeyboardState] = useState({
     layout: 'default',
     language: 'ru', // 'ru' или 'en'
@@ -181,9 +211,64 @@ const CertificateFormPage = () => {
       }
     }
   };
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/thanks', { state: { game } });
+
+    // Валидация
+    if (!name.trim()) {
+      setSubmitError('Пожалуйста, введите ваше имя');
+      return;
+    }
+
+    if (!email.trim()) {
+      setSubmitError('Пожалуйста, введите email');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setSubmitError('Пожалуйста, введите корректный email');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const gameData = {
+        name: name.trim(),
+        email: email.trim(),
+        game: game,
+        ...location.state
+      };
+
+      const result = await sendCertificate(gameData);
+
+      if (result.success) {
+        navigate('/thanks', {
+          state: {
+            game,
+            emailSent: true,
+            recipientEmail: email,
+            ...location.state
+          }
+        });
+      } else {
+        setSubmitError('Ошибка отправки грамоты. Попробуйте еще раз.');
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке грамоты:', error);
+      setSubmitError('Произошла непредвиденная ошибка. Попробуйте позже.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Обработчики фокуса для полей ввода
@@ -220,7 +305,7 @@ const CertificateFormPage = () => {
   return (
     <section className={styles.container}>
       <GamesMenu activeGame={game} hideStats={true} />
-
+      <CertificateTemplate name={name} />
       <div className={styles.content}>
         <span className={styles.title}>
           Введите свое имя и адрес электронной почты, <br />
@@ -265,8 +350,18 @@ const CertificateFormPage = () => {
           onKeyPress={handleKeyboardKeyPress}
         />
       </div>
-      <button type="submit" onClick={handleSubmit} className={`${basicSumbitButton} ${enabledSumbitButton}`}>
-        Отправить
+      {submitError && <div className={styles.errorMessage}>{submitError}</div>}
+
+      {!process.env.REACT_APP_EMAILJS_PUBLIC_KEY && (
+        <div className={styles.warningMessage}>Внимание: EmailJS не настроен. Создайте файл .env с ключами EmailJS.</div>
+      )}
+
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        disabled={isSubmitting}
+        className={`${basicSumbitButton} ${enabledSumbitButton} ${isSubmitting ? styles.submitButton_disabled : ''}`}>
+        {isSubmitting ? 'Отправка...' : 'Отправить'}
       </button>
       <Footer />
     </section>

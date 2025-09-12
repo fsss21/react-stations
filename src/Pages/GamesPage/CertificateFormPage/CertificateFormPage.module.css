@@ -129,3 +129,39 @@
 .fioEnter{
 	font-family: 'Snowstorm', sans-serif;
 }
+
+.errorMessage {
+    margin: 10px auto;
+    padding: 10px 15px;
+    background: rgba(255, 0, 0, 0.2);
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.submitButton_disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.submitButton_disabled:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.warningMessage {
+    margin: 10px auto;
+    padding: 10px 15px;
+    background: rgba(255, 165, 0, 0.2);
+    border: 2px solid rgba(255, 165, 0, 0.5);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
